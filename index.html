@@ -1,0 +1,1045 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>971 | 変言自在</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@400;500;700;800&family=Noto+Serif+JP:wght@300;400;500;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --navy:      #0B1F48;
+      --white:     #FFFFFF;
+      --off-white: #F7F6F3;
+      --black:     #181818;
+      --gray:      #888;
+      --gray-lt:   #E2E0DC;
+      --serif:     'Shippori Mincho B1', 'Noto Serif JP', serif;
+      --sans:      'Inter', sans-serif;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--serif);
+      background: var(--white);
+      color: var(--black);
+      line-height: 1.8;
+      overflow-x: hidden;
+      cursor: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'><g transform='rotate(-45 16 16)'><path d='M16 2 L19.5 11 L16 14.5 L12.5 11 Z' fill='%230a0a0a' stroke='white' stroke-width='1'/><rect x='14.5' y='14.5' width='3' height='9' rx='0.5' fill='%23333' stroke='white' stroke-width='0.6'/><line x1='14.5' y1='17' x2='17.5' y2='17' stroke='%23999' stroke-width='0.8'/><line x1='14.5' y1='19' x2='17.5' y2='19' stroke='%23999' stroke-width='0.8'/><line x1='14.5' y1='21' x2='17.5' y2='21' stroke='%23999' stroke-width='0.8'/><circle cx='16' cy='27.5' r='3' fill='none' stroke='%230a0a0a' stroke-width='2'/><circle cx='16' cy='27.5' r='3' fill='none' stroke='white' stroke-width='0.8'/></g></svg>") 6 6, crosshair;
+    }
+    a, button { cursor: inherit; }
+    img { display: block; max-width: 100%; }
+
+    /* ══ HAMBURGER ══════════════════════════ */
+    .hamburger {
+      position: fixed;
+      top: 28px; right: 32px;
+      z-index: 200;
+      background: none;
+      border: none;
+      padding: 8px;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+    .hamburger span {
+      display: block;
+      width: 26px; height: 1.5px;
+      background: var(--white);
+      transition: transform 0.3s, opacity 0.3s, background 0.3s;
+      transform-origin: center;
+    }
+    .hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+    .hamburger.dark span { background: var(--navy); }
+
+    /* ══ DRAWER ════════════════════════════ */
+    .drawer {
+      position: fixed;
+      inset: 0;
+      background: var(--navy);
+      z-index: 190;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 48px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.4s ease;
+    }
+    .drawer.open { opacity: 1; pointer-events: auto; }
+    .drawer a {
+      font-family: var(--serif);
+      font-size: clamp(28px, 4vw, 42px);
+      font-weight: 500;
+      color: rgba(255,255,255,0.85);
+      text-decoration: none;
+      letter-spacing: 0.15em;
+      transition: color 0.2s, letter-spacing 0.3s;
+    }
+    .drawer a:hover { color: var(--white); letter-spacing: 0.25em; }
+    .drawer-en {
+      font-family: var(--sans);
+      font-size: 11px;
+      font-weight: 400;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.3);
+      display: block;
+      margin-top: 4px;
+      text-align: center;
+    }
+
+    /* ══ HERO ═══════════════════════════════ */
+    #hero {
+      height: 67svh;
+      min-height: 520px;
+      background: var(--navy);
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-main {
+      flex: 1;
+      display: flex;
+      align-items: stretch;
+      min-height: 0;
+    }
+
+    /* 縦組み：左カラム */
+    .hero-vertical {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      padding: 60px 28px 20px;
+      border-right: 1px solid rgba(255,255,255,0.1);
+      flex-shrink: 0;
+    }
+    .hero-logo { height: 110px; width: auto; }
+    .hero-tagline-block {
+      display: flex;
+      flex-direction: row;
+      align-items: flex-start;
+      gap: 10px;
+    }
+    .hero-tagline {
+      writing-mode: vertical-rl;
+      font-family: var(--serif);
+      font-size: clamp(32px, 4vw, 52px);
+      font-weight: 700;
+      color: var(--white);
+      letter-spacing: 0.12em;
+      line-height: 1;
+    }
+    .hero-tagline .k {
+      color: var(--white);
+      position: relative;
+      display: inline-block;
+      border: 1.5px solid rgba(255,255,255,0.75);
+      border-radius: 7px;
+      padding: 3px 5px;
+      margin: 4px 0;
+    }
+    .hero-tagline .k::before {
+      content: '';
+      position: absolute;
+      right: -9px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 0; height: 0;
+      background: none;
+      left: auto;
+      border-top: 5px solid transparent;
+      border-bottom: 5px solid transparent;
+      border-left: 8px solid rgba(255,255,255,0.75);
+    }
+    .hero-reading {
+      writing-mode: vertical-rl;
+      font-family: var(--serif);
+      font-size: 10px;
+      font-weight: 300;
+      color: rgba(255,255,255,0.35);
+      letter-spacing: 0.3em;
+      padding-top: 4px;
+    }
+
+    /* 右カラム：マーキー */
+    .hero-marquee-wrap {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      overflow: hidden;
+    }
+    .mq-row {
+      overflow: hidden;
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .mq-row:first-child { border-top: 1px solid rgba(255,255,255,0.06); }
+    .mq-track {
+      display: flex;
+      white-space: nowrap;
+      animation: mq-left 38s linear infinite;
+    }
+    .mq-row:nth-child(2) .mq-track { animation: mq-right 32s linear infinite; }
+    .mq-row:nth-child(3) .mq-track { animation: mq-left 44s linear infinite; }
+    .mq-item {
+      font-family: var(--serif);
+      font-size: clamp(26px, 3.5vw, 44px);
+      font-weight: 500;
+      color: rgba(255,255,255,0.28);
+      letter-spacing: 0.08em;
+      padding: 0 36px;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .mq-item::after {
+      content: '　―';
+      color: rgba(255,255,255,0.12);
+      font-size: 0.65em;
+    }
+    .hero-marquee-wrap:hover .mq-track { animation-play-state: paused; }
+    @keyframes mq-left  { from { transform: translateX(0); }    to { transform: translateX(-50%); } }
+    @keyframes mq-right { from { transform: translateX(-50%); } to { transform: translateX(0); } }
+
+    /* サブコピー */
+    .hero-subcopy {
+      text-align: center;
+      padding: 20px 24px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      font-family: var(--serif);
+      font-size: clamp(16px, 2vw, 22px);
+      font-weight: 400;
+      color: rgba(255,255,255,0.7);
+      letter-spacing: 0.2em;
+    }
+
+    /* ══ SECTION COMMON ═════════════════════ */
+    .sec { padding: 100px 60px; }
+    .sec-sm { padding: 70px 60px; }
+    .sec-label {
+      font-family: var(--sans);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--navy);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .sec-label::before { content: ''; width: 28px; height: 1px; background: var(--navy); }
+
+    /* ══ WORKS ══════════════════════════════ */
+    #works { background: var(--white); }
+    .works-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 48px;
+    }
+    .works-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2px;
+      background: var(--gray-lt);
+    }
+    .work-card {
+      background: var(--white);
+      cursor: pointer;
+      transition: background 0.25s;
+      text-decoration: none;
+      color: inherit;
+    }
+    .work-card:hover { background: var(--off-white); }
+    .work-card.hidden { display: none; }
+    .work-img {
+      aspect-ratio: 4/3;
+      background: #D8D6D0;
+      overflow: hidden;
+      position: relative;
+    }
+    .work-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+    .work-card:hover .work-img img { transform: scale(1.04); }
+    .work-img-placeholder {
+      width: 100%; height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--sans);
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      color: rgba(0,0,0,0.2);
+      text-transform: uppercase;
+      background: linear-gradient(135deg, #e8e6e0, #d4d2cc);
+    }
+    .work-body { padding: 24px 28px 28px; }
+    .work-title {
+      font-family: var(--serif);
+      font-size: 18px;
+      font-weight: 500;
+      color: var(--black);
+      margin-bottom: 12px;
+      line-height: 1.5;
+    }
+    .work-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+    .tag {
+      font-family: var(--sans);
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      color: var(--navy);
+      border: 1px solid rgba(11,31,72,0.3);
+      padding: 3px 10px;
+    }
+    .works-more-wrap { text-align: center; margin-top: 48px; }
+    .btn-more {
+      font-family: var(--sans);
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--navy);
+      background: none;
+      border: 1px solid var(--navy);
+      padding: 14px 48px;
+      transition: background 0.2s, color 0.2s;
+    }
+    .btn-more:hover { background: var(--navy); color: var(--white); }
+    .btn-more.hidden { display: none; }
+
+    /* ══ ABOUT ══════════════════════════════ */
+    #about { padding: 0; }
+
+    /* Mission */
+    .about-mission { background: var(--navy); padding: 64px 60px; }
+    .mission-label {
+      font-family: var(--sans);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.3);
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .mission-label::before { content: ''; width: 28px; height: 1px; background: rgba(255,255,255,0.25); }
+    .mission-layout {
+      display: flex;
+      gap: 72px;
+      align-items: flex-start;
+    }
+    .mission-heading {
+      font-family: var(--serif);
+      font-size: clamp(32px, 4.5vw, 60px);
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1.5;
+      letter-spacing: 0.08em;
+      margin-bottom: 0;
+      flex-shrink: 0;
+    }
+    .mission-body {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      padding-top: 6px;
+    }
+    .mission-body p {
+      font-size: 13px;
+      font-weight: 300;
+      color: rgba(255,255,255,0.55);
+      line-height: 2.0;
+    }
+
+    /* Service */
+    .about-service { background: var(--white); padding: 100px 60px; }
+    .service-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2px;
+      background: var(--gray-lt);
+    }
+    .service-item {
+      background: var(--white);
+      padding: 36px 40px;
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+    }
+    .service-num {
+      font-family: var(--sans);
+      font-size: 10px;
+      font-weight: 600;
+      color: rgba(11,31,72,0.4);
+      letter-spacing: 0.15em;
+      padding-top: 4px;
+      flex-shrink: 0;
+    }
+    .service-text { font-family: var(--serif); font-size: 15px; font-weight: 400; color: var(--black); line-height: 1.8; }
+    .service-sub { font-size: 12px; color: var(--gray); margin-top: 4px; line-height: 1.7; }
+
+    /* Profile */
+    .about-profile { background: var(--off-white); padding: 100px 60px; }
+    .profile-grid {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 64px;
+      align-items: start;
+    }
+    .profile-photo {
+      aspect-ratio: 3/4;
+      overflow: hidden;
+      position: relative;
+    }
+    .profile-photo img {
+      position: absolute;
+      inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      transition: opacity 0.5s;
+    }
+    .profile-photo .photo-hover { opacity: 0; }
+    .profile-photo:hover .photo-hover { opacity: 1; }
+    .profile-photo:hover .photo-normal { opacity: 0; }
+    .profile-name { font-family: var(--serif); font-size: 28px; font-weight: 700; color: var(--black); letter-spacing: 0.06em; margin-bottom: 4px; }
+    .profile-name-en { font-family: var(--sans); font-size: 13px; font-weight: 400; color: var(--gray); letter-spacing: 0.15em; margin-bottom: 6px; }
+    .profile-roles { font-family: var(--serif); font-size: 13px; color: var(--navy); letter-spacing: 0.1em; margin-bottom: 32px; padding-bottom: 28px; border-bottom: 1px solid var(--gray-lt); }
+    .profile-bio { font-size: 14px; color: #444; line-height: 2.1; margin-bottom: 20px; }
+    .profile-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 28px; }
+    .profile-tag { font-family: var(--serif); font-size: 13px; color: var(--gray); background: var(--white); padding: 4px 12px; border: 1px solid var(--gray-lt); }
+
+    /* ══ NEWS ═══════════════════════════════ */
+    #news { background: var(--white); }
+    .news-list { display: flex; flex-direction: column; }
+    .news-item { border-top: 1px solid var(--gray-lt); }
+    .news-item:last-child { border-bottom: 1px solid var(--gray-lt); }
+    .news-trigger {
+      width: 100%;
+      background: none;
+      border: none;
+      padding: 24px 0;
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      text-align: left;
+      transition: color 0.2s;
+    }
+    .news-trigger:hover { color: var(--navy); }
+    .news-date { font-family: var(--sans); font-size: 12px; font-weight: 400; color: var(--gray); letter-spacing: 0.1em; min-width: 90px; }
+    .news-cat { font-family: var(--sans); font-size: 10px; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: var(--navy); border: 1px solid rgba(11,31,72,0.3); padding: 2px 8px; min-width: 80px; text-align: center; }
+    .news-ttl { font-family: var(--serif); font-size: 15px; font-weight: 400; color: var(--black); flex: 1; line-height: 1.6; }
+    .news-arrow { font-family: var(--sans); font-size: 18px; color: var(--gray); transition: transform 0.3s; flex-shrink: 0; }
+    .news-item.open .news-arrow { transform: rotate(90deg); }
+    .news-body { overflow: hidden; max-height: 0; transition: max-height 0.4s ease; }
+    .news-body-inner { padding: 0 0 28px 114px; font-size: 14px; color: #555; line-height: 2.0; }
+    .news-body-inner a { color: var(--navy); text-underline-offset: 3px; }
+
+    /* ══ CONTACT ════════════════════════════ */
+    #contact { background: var(--off-white); }
+    .contact-inner { max-width: 680px; }
+    .contact-lead { font-size: 14px; color: var(--gray); line-height: 2.0; margin-bottom: 52px; }
+    .form-field { display: flex; flex-direction: column; gap: 8px; margin-bottom: 24px; }
+    .form-field label { font-family: var(--sans); font-size: 11px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--navy); }
+    .form-field label .req { color: #c0392b; margin-left: 4px; }
+    .form-field input,
+    .form-field textarea {
+      font-family: var(--serif);
+      font-size: 14px;
+      color: var(--black);
+      background: var(--white);
+      border: 1px solid var(--gray-lt);
+      padding: 13px 16px;
+      outline: none;
+      transition: border-color 0.2s;
+      width: 100%;
+    }
+    .form-field input:focus,
+    .form-field textarea:focus { border-color: var(--navy); }
+    .form-field textarea { min-height: 120px; resize: vertical; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .inquiry-types { display: flex; flex-direction: column; gap: 10px; margin-bottom: 8px; }
+    .radio-item { display: flex; align-items: center; gap: 10px; font-family: var(--serif); font-size: 14px; color: var(--black); cursor: pointer; }
+    .radio-item input[type="radio"] { accent-color: var(--navy); width: 16px; height: 16px; }
+    .form-submit {
+      background: var(--navy);
+      color: var(--white);
+      font-family: var(--sans);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      padding: 18px 64px;
+      border: none;
+      margin-top: 16px;
+      transition: background 0.2s;
+    }
+    .form-submit:hover { background: #0d2860; }
+
+    /* ══ FOOTER ═════════════════════════════ */
+    footer {
+      background: var(--black);
+      padding: 48px 60px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .footer-logo img { height: 52px; width: auto; }
+    .footer-right { display: flex; flex-direction: column; align-items: flex-end; gap: 16px; }
+    .footer-sns { display: flex; gap: 20px; }
+    .footer-sns a { font-family: var(--sans); font-size: 11px; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255,255,255,0.45); text-decoration: none; transition: color 0.2s; }
+    .footer-sns a:hover { color: var(--white); }
+    .footer-copy { font-family: var(--sans); font-size: 11px; color: rgba(255,255,255,0.2); letter-spacing: 0.08em; }
+
+    /* ══ DECORATIONS ════════════════════════ */
+    .hero-decos {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 1;
+    }
+    .hero-main, .hero-subcopy, .scroll-hint { position: relative; z-index: 2; }
+
+    /* 共通 smoke */
+    .smk {
+      position: absolute;
+      pointer-events: none;
+    }
+    .smk svg { display: block; }
+
+    /* ── Mobile hero smokes（desktop: hidden） ── */
+    .hero-decos-mobile {
+      display: none;
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 1;
+    }
+    .hm1 { width: 120px; top: 6%;   left: -18px; opacity: 0.13; animation: sf1 11s ease-in-out infinite; }
+    .hm2 { width: 80px;  bottom: 20%; left: 8px;  opacity: 0.09; animation: sf2 9s 1.5s ease-in-out infinite; }
+    .hm3 { width: 140px; top: 10%;  right: -22px; opacity: 0.13; animation: sf2 13s ease-in-out infinite; }
+    .hm4 { width: 70px;  bottom: 24%; right: 12px; opacity: 0.08; animation: sf1 10s 2s ease-in-out infinite; }
+    .hm1 svg, .hm2 svg, .hm3 svg, .hm4 svg { fill: white; }
+
+    /* ── Hero smokes（白・低opacity） ── */
+    .hs1 { width: 260px; top: 4%;  right: 8%;  opacity: 0.13; animation: sf1 10s ease-in-out infinite; }
+    .hs2 { width: 110px; top: 38%; right: 30%; opacity: 0.09; animation: sf2 8s 1s ease-in-out infinite; }
+    .hs3 { width: 180px; bottom: 12%; right: 2%; opacity: 0.11; animation: sf1 12s 2s ease-in-out infinite; }
+    .hs4 { width: 70px;  top: 18%; right: 54%; opacity: 0.06; animation: sf2 7s 0.5s ease-in-out infinite; }
+    .hs5 { width: 320px; top: 30%; right: 14%; opacity: 0.06; animation: sf3 16s 3s ease-in-out infinite; }
+
+    /* ── Works smokes（紺・白背景） ── */
+    #works { position: relative; overflow: hidden; }
+    .ws1 { width: 280px; top: -40px; right: -20px; opacity: 0.05; animation: sf1 14s ease-in-out infinite; }
+    .ws2 { width: 90px;  bottom: 60px; left: 30px; opacity: 0.04; animation: sf2 10s 2s ease-in-out infinite; }
+
+    /* ── Service smokes（紺・白背景） ── */
+    .about-service { position: relative; overflow: hidden; }
+    .svs1 { width: 200px; top: 20px;   left: -30px; opacity: 0.04; animation: sf3 13s 1s ease-in-out infinite; }
+    .svs2 { width: 130px; bottom: -10px; right: 5%; opacity: 0.05; animation: sf1 11s 3s ease-in-out infinite; }
+    .svs3 { width: 60px;  top: 40%;   right: 42%;  opacity: 0.04; animation: sf2 9s ease-in-out infinite; }
+
+    /* ── Mission smokes（白・紺背景） ── */
+    .about-mission { position: relative; overflow: hidden; }
+    .ms1 { width: 220px; top: -30px; right: 4%; opacity: 0.10; animation: sf2 14s ease-in-out infinite; }
+    .ms2 { width: 100px; bottom: 8%; left: 1%;  opacity: 0.07; animation: sf1 10s 2s ease-in-out infinite; }
+    .ms3 { width: 370px; top: 20%;  right: 38%; opacity: 0.04; animation: sf3 18s 1s ease-in-out infinite; }
+
+    /* ── Profile smokes（紺・オフホワイト背景） ── */
+    .about-profile { position: relative; overflow: hidden; }
+    .ps1 { width: 240px; top: -20px; right: -30px; opacity: 0.05; animation: sf1 15s ease-in-out infinite; }
+    .ps2 { width: 80px;  bottom: 40px; left: 10px; opacity: 0.04; animation: sf2 9s 2s ease-in-out infinite; }
+
+    /* ── News smokes（紺・白背景） ── */
+    #news { position: relative; overflow: hidden; }
+    .ns1 { width: 160px; top: 0; right: 0; opacity: 0.04; animation: sf3 12s ease-in-out infinite; }
+
+    /* ── Contact smokes（紺・オフホワイト背景） ── */
+    #contact { position: relative; overflow: hidden; }
+    .cs1 { width: 300px; bottom: -30px; right: -40px; opacity: 0.05; animation: sf1 16s ease-in-out infinite; }
+    .cs2 { width: 70px;  top: 40px; right: 55%; opacity: 0.04; animation: sf2 8s 1s ease-in-out infinite; }
+
+    /* smoke SVG の色 */
+    .hs1 svg, .hs2 svg, .hs3 svg, .hs4 svg, .hs5 svg,
+    .ms1 svg, .ms2 svg, .ms3 svg { fill: white; }
+    .ws1 svg, .ws2 svg, .svs1 svg, .svs2 svg, .svs3 svg,
+    .ps1 svg, .ps2 svg, .ns1 svg, .cs1 svg, .cs2 svg { fill: var(--navy); }
+
+    @keyframes sf1 {
+      0%,100% { transform: translateY(0) scale(1); }
+      50%      { transform: translateY(-16px) scale(1.04); }
+    }
+    @keyframes sf2 {
+      0%,100% { transform: translateY(0) rotate(-4deg); }
+      50%      { transform: translateY(-10px) rotate(4deg); }
+    }
+    @keyframes sf3 {
+      0%,100% { transform: translateY(0) scaleX(1); }
+      50%      { transform: translateY(-8px) scaleX(1.03); }
+    }
+
+    .profile-photo { position: relative; }
+
+    /* ══ SCROLL HINT ════════════════════════ */
+    .scroll-hint {
+      position: absolute;
+      bottom: 70px; right: 32px;
+      display: flex; flex-direction: column; align-items: center; gap: 8px;
+      pointer-events: none;
+    }
+    .scroll-hint span { font-family: var(--sans); font-size: 9px; letter-spacing: 0.3em; color: rgba(255,255,255,0.25); writing-mode: vertical-rl; }
+    .scroll-line { width: 1px; height: 50px; background: linear-gradient(to bottom, rgba(255,255,255,0.25), transparent); animation: sline 1.8s ease-in-out infinite; }
+    @keyframes sline {
+      0%   { transform: scaleY(0); transform-origin: top; }
+      50%  { transform: scaleY(1); transform-origin: top; }
+      51%  { transform: scaleY(1); transform-origin: bottom; }
+      100% { transform: scaleY(0); transform-origin: bottom; }
+    }
+
+    /* ══ MOBILE ════════════════════════════════ */
+    @media (max-width: 767px) {
+
+      /* --- SECTION COMMON --- */
+      .sec, .sec-sm { padding: 56px 24px; }
+
+      /* --- DECORATIONS --- */
+      .hero-decos { display: none; }
+      /* mobile hero smokes */
+      .hero-decos-mobile { display: block; }
+      /* section smokes: size down large ones */
+      .ws1  { width: 160px; }
+      .ms3  { width: 180px; }
+      .svs3 { width: 110px; }
+      .ps1  { width: 130px; }
+      .cs1  { width: 160px; }
+
+      /* --- HERO --- */
+      #hero { height: auto; min-height: 0; }
+      .hero-main {
+        flex-direction: column;
+        align-items: stretch;
+        justify-content: flex-start;
+      }
+      .hero-vertical {
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        padding: 64px 24px 24px;
+        border-right: none;
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+        gap: 20px;
+        flex: 0 0 auto;
+      }
+      .hero-logo { height: 150px; }
+      .hero-tagline-block { flex-direction: row; gap: 12px; }
+      .hero-tagline { font-size: clamp(36px, 10vw, 52px); }
+      .hero-reading { font-size: 9px; }
+      .hero-marquee-wrap {
+        flex: 0 0 110px;
+        height: 110px;
+        justify-content: center;
+      }
+      .mq-row:nth-child(2),
+      .mq-row:nth-child(3) { display: none; }
+      .mq-row:first-child { border-top: none; border-bottom: none; padding: 12px 0; }
+      .mq-item { font-size: clamp(20px, 5.5vw, 28px); padding: 0 20px; }
+      .hero-subcopy { font-size: 15px; letter-spacing: 0.15em; padding: 16px 24px; }
+      .scroll-hint { display: none; }
+
+      /* --- WORKS --- */
+      .works-grid { grid-template-columns: 1fr; }
+      .works-header { margin-bottom: 28px; }
+
+      /* --- MISSION --- */
+      .about-mission { padding: 56px 24px; }
+      .mission-layout { flex-direction: column; gap: 32px; }
+      .mission-heading { font-size: clamp(28px, 7vw, 44px); }
+      .mission-body p { font-size: 13px; }
+
+      /* --- SERVICE --- */
+      .about-service { padding: 56px 24px; }
+      .service-grid { grid-template-columns: 1fr; }
+      .service-item { padding: 24px 20px; }
+
+      /* --- PROFILE --- */
+      .about-profile { padding: 56px 24px; }
+      .profile-grid { grid-template-columns: 1fr; gap: 32px; }
+      .profile-photo { aspect-ratio: 4/3; max-width: 280px; }
+
+      /* --- NEWS --- */
+      #news { padding: 56px 24px; }
+      .news-trigger { gap: 12px; padding: 20px 0; }
+      .news-date { min-width: 76px; font-size: 11px; }
+      .news-cat { min-width: 64px; font-size: 9px; padding: 2px 6px; }
+      .news-ttl { font-size: 13px; }
+      .news-body-inner { padding: 0 0 20px 0; font-size: 13px; }
+
+      /* --- CONTACT --- */
+      #contact { padding: 56px 24px; }
+      .form-row { grid-template-columns: 1fr; gap: 0; }
+      .contact-inner { max-width: 100%; }
+      .form-submit { width: 100%; padding: 16px; }
+
+      /* --- FOOTER --- */
+      footer { flex-direction: column; align-items: flex-start; gap: 24px; padding: 40px 24px; }
+      .footer-right { align-items: flex-start; }
+      .footer-sns { flex-wrap: wrap; gap: 16px; }
+      .footer-logo img { height: 40px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ハンバーガー -->
+  <button class="hamburger" id="hbg" aria-label="メニュー">
+    <span></span><span></span><span></span>
+  </button>
+
+  <!-- ドロワー -->
+  <nav class="drawer" id="drawer">
+    <a href="#works" onclick="closeMenu()">Works<span class="drawer-en">works</span></a>
+    <a href="#about" onclick="closeMenu()">About<span class="drawer-en">about</span></a>
+    <a href="#news"  onclick="closeMenu()">News<span class="drawer-en">news</span></a>
+    <a href="#contact" onclick="closeMenu()">Contact<span class="drawer-en">contact</span></a>
+  </nav>
+
+  <!-- ══ HERO ══ -->
+  <section id="hero">
+
+    <!-- 装飾：もくもく（モバイル用） -->
+    <div class="hero-decos-mobile" aria-hidden="true">
+      <div class="smk hm1"><svg viewBox="0 0 200 130" xmlns="http://www.w3.org/2000/svg"><ellipse cx="42" cy="84" rx="36" ry="28"/><ellipse cx="84" cy="62" rx="44" ry="34"/><ellipse cx="130" cy="78" rx="36" ry="28"/><ellipse cx="66" cy="44" rx="28" ry="23"/><ellipse cx="108" cy="36" rx="34" ry="27"/><ellipse cx="155" cy="58" rx="26" ry="21"/></svg></div>
+      <div class="smk hm2"><svg viewBox="0 0 90 60" xmlns="http://www.w3.org/2000/svg"><ellipse cx="22" cy="40" rx="18" ry="14"/><ellipse cx="46" cy="28" rx="24" ry="19"/><ellipse cx="70" cy="38" rx="17" ry="13"/><ellipse cx="34" cy="16" rx="14" ry="11"/><ellipse cx="58" cy="13" rx="16" ry="12"/></svg></div>
+      <div class="smk hm3"><svg viewBox="0 0 130 200" xmlns="http://www.w3.org/2000/svg"><ellipse cx="65" cy="160" rx="34" ry="24"/><ellipse cx="55" cy="126" rx="38" ry="29"/><ellipse cx="68" cy="94" rx="32" ry="26"/><ellipse cx="56" cy="64" rx="26" ry="21"/><ellipse cx="66" cy="38" rx="22" ry="18"/><ellipse cx="60" cy="16" rx="14" ry="12"/></svg></div>
+      <div class="smk hm4"><svg viewBox="0 0 70 50" xmlns="http://www.w3.org/2000/svg"><ellipse cx="18" cy="34" rx="14" ry="11"/><ellipse cx="36" cy="24" rx="18" ry="14"/><ellipse cx="54" cy="32" rx="13" ry="10"/><ellipse cx="28" cy="13" rx="11" ry="9"/></svg></div>
+    </div>
+
+    <!-- 装飾：もくもく（デスクトップ用） -->
+    <div class="hero-decos" aria-hidden="true">
+      <!-- hs1: 大きめ丸ふわ -->
+      <div class="smk hs1"><svg viewBox="0 0 200 130" xmlns="http://www.w3.org/2000/svg"><ellipse cx="42" cy="84" rx="36" ry="28"/><ellipse cx="84" cy="62" rx="44" ry="34"/><ellipse cx="130" cy="78" rx="36" ry="28"/><ellipse cx="66" cy="44" rx="28" ry="23"/><ellipse cx="108" cy="36" rx="34" ry="27"/><ellipse cx="155" cy="58" rx="26" ry="21"/></svg></div>
+      <!-- hs2: 小さいコンパクト -->
+      <div class="smk hs2"><svg viewBox="0 0 90 60" xmlns="http://www.w3.org/2000/svg"><ellipse cx="22" cy="40" rx="18" ry="14"/><ellipse cx="46" cy="28" rx="24" ry="19"/><ellipse cx="70" cy="38" rx="17" ry="13"/><ellipse cx="34" cy="16" rx="14" ry="11"/><ellipse cx="58" cy="13" rx="16" ry="12"/></svg></div>
+      <!-- hs3: 縦長スリム -->
+      <div class="smk hs3"><svg viewBox="0 0 130 200" xmlns="http://www.w3.org/2000/svg"><ellipse cx="65" cy="160" rx="34" ry="24"/><ellipse cx="55" cy="126" rx="38" ry="29"/><ellipse cx="68" cy="94" rx="32" ry="26"/><ellipse cx="56" cy="64" rx="26" ry="21"/><ellipse cx="66" cy="38" rx="22" ry="18"/><ellipse cx="60" cy="16" rx="14" ry="12"/></svg></div>
+      <!-- hs4: 極小 -->
+      <div class="smk hs4"><svg viewBox="0 0 70 50" xmlns="http://www.w3.org/2000/svg"><ellipse cx="18" cy="34" rx="14" ry="11"/><ellipse cx="36" cy="24" rx="18" ry="14"/><ellipse cx="54" cy="32" rx="13" ry="10"/><ellipse cx="28" cy="13" rx="11" ry="9"/></svg></div>
+      <!-- hs5: 横長ワイド -->
+      <div class="smk hs5"><svg viewBox="0 0 320 80" xmlns="http://www.w3.org/2000/svg"><ellipse cx="28" cy="54" rx="24" ry="17"/><ellipse cx="70" cy="40" rx="36" ry="24"/><ellipse cx="122" cy="48" rx="30" ry="21"/><ellipse cx="172" cy="36" rx="38" ry="26"/><ellipse cx="228" cy="46" rx="32" ry="21"/><ellipse cx="280" cy="52" rx="26" ry="18"/><ellipse cx="96" cy="26" rx="22" ry="16"/><ellipse cx="152" cy="20" rx="28" ry="19"/><ellipse cx="206" cy="24" rx="24" ry="17"/></svg></div>
+    </div>
+
+    <div class="hero-main">
+      <div class="hero-vertical">
+        <img class="hero-logo" src="images/logo_white.png" alt="971" />
+        <div class="hero-tagline-block">
+          <p class="hero-tagline">
+            <span>変</span><span class="k">言</span><span>自在</span>
+          </p>
+          <p class="hero-reading">へんげんじざい</p>
+        </div>
+      </div>
+      <div class="hero-marquee-wrap">
+        <div class="mq-row">
+          <div class="mq-track">
+            <span class="mq-item">言葉が、世界を変える。</span>
+            <span class="mq-item">一行が、すべてを動かす。</span>
+            <span class="mq-item">伝わる言葉を、つくる。</span>
+            <span class="mq-item">コピーは、戦略だ。</span>
+            <span class="mq-item">言葉が、世界を変える。</span>
+            <span class="mq-item">一行が、すべてを動かす。</span>
+            <span class="mq-item">伝わる言葉を、つくる。</span>
+            <span class="mq-item">コピーは、戦略だ。</span>
+          </div>
+        </div>
+        <div class="mq-row">
+          <div class="mq-track">
+            <span class="mq-item">買う理由を、つくる。</span>
+            <span class="mq-item">選ばれる言葉には、理由がある。</span>
+            <span class="mq-item">忘れられないコピーを。</span>
+            <span class="mq-item">想いは言葉になって、初めて伝わる。</span>
+            <span class="mq-item">買う理由を、つくる。</span>
+            <span class="mq-item">選ばれる言葉には、理由がある。</span>
+            <span class="mq-item">忘れられないコピーを。</span>
+            <span class="mq-item">想いは言葉になって、初めて伝わる。</span>
+          </div>
+        </div>
+        <div class="mq-row">
+          <div class="mq-track">
+            <span class="mq-item">あなたのブランドに、魂を込める。</span>
+            <span class="mq-item">深く刺さる言葉で。</span>
+            <span class="mq-item">共感が、行動を生む。</span>
+            <span class="mq-item">変言自在。</span>
+            <span class="mq-item">あなたのブランドに、魂を込める。</span>
+            <span class="mq-item">深く刺さる言葉で。</span>
+            <span class="mq-item">共感が、行動を生む。</span>
+            <span class="mq-item">変言自在。</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-subcopy">変わるための言葉と伴走</div>
+    <div class="scroll-hint">
+      <div class="scroll-line"></div>
+      <span>Scroll</span>
+    </div>
+  </section>
+
+  <!-- ══ WORKS ══ -->
+  <section id="works" class="sec">
+    <div class="works-header">
+      <div class="sec-label">Works</div>
+    </div>
+    <div class="smk ws1" aria-hidden="true"><svg viewBox="0 0 280 90" xmlns="http://www.w3.org/2000/svg"><ellipse cx="24" cy="62" rx="20" ry="15"/><ellipse cx="62" cy="46" rx="34" ry="23"/><ellipse cx="112" cy="56" rx="28" ry="19"/><ellipse cx="162" cy="42" rx="36" ry="25"/><ellipse cx="216" cy="52" rx="30" ry="20"/><ellipse cx="258" cy="60" rx="22" ry="16"/><ellipse cx="88" cy="28" rx="20" ry="15"/><ellipse cx="140" cy="22" rx="26" ry="18"/><ellipse cx="192" cy="26" rx="22" ry="16"/></svg></div>
+    <div class="smk ws2" aria-hidden="true"><svg viewBox="0 0 90 60" xmlns="http://www.w3.org/2000/svg"><ellipse cx="22" cy="40" rx="18" ry="14"/><ellipse cx="46" cy="28" rx="24" ry="19"/><ellipse cx="70" cy="38" rx="17" ry="13"/><ellipse cx="34" cy="16" rx="14" ry="11"/><ellipse cx="58" cy="13" rx="16" ry="12"/></svg></div>
+    <div class="works-grid" id="worksGrid">
+      <!-- JS で content/works.json から動的に挿入 -->
+    </div>
+    <div class="works-more-wrap">
+      <button class="btn-more hidden" id="worksMore">More</button>
+    </div>
+  </section>
+
+  <!-- ══ ABOUT ══ -->
+  <section id="about">
+
+    <!-- Mission -->
+    <div class="about-mission">
+      <div class="smk ms1" aria-hidden="true"><svg viewBox="0 0 200 130" xmlns="http://www.w3.org/2000/svg"><ellipse cx="42" cy="84" rx="36" ry="28"/><ellipse cx="84" cy="62" rx="44" ry="34"/><ellipse cx="130" cy="78" rx="36" ry="28"/><ellipse cx="66" cy="44" rx="28" ry="23"/><ellipse cx="108" cy="36" rx="34" ry="27"/><ellipse cx="155" cy="58" rx="26" ry="21"/></svg></div>
+      <div class="smk ms2" aria-hidden="true"><svg viewBox="0 0 90 60" xmlns="http://www.w3.org/2000/svg"><ellipse cx="22" cy="40" rx="18" ry="14"/><ellipse cx="46" cy="28" rx="24" ry="19"/><ellipse cx="70" cy="38" rx="17" ry="13"/><ellipse cx="34" cy="16" rx="14" ry="11"/><ellipse cx="58" cy="13" rx="16" ry="12"/></svg></div>
+      <div class="smk ms3" aria-hidden="true"><svg viewBox="0 0 320 80" xmlns="http://www.w3.org/2000/svg"><ellipse cx="28" cy="54" rx="24" ry="17"/><ellipse cx="70" cy="40" rx="36" ry="24"/><ellipse cx="122" cy="48" rx="30" ry="21"/><ellipse cx="172" cy="36" rx="38" ry="26"/><ellipse cx="228" cy="46" rx="32" ry="21"/><ellipse cx="280" cy="52" rx="26" ry="18"/><ellipse cx="96" cy="26" rx="22" ry="16"/><ellipse cx="152" cy="20" rx="28" ry="19"/><ellipse cx="206" cy="24" rx="24" ry="17"/></svg></div>
+      <div class="mission-label">Mission</div>
+      <div class="mission-layout">
+        <h2 class="mission-heading">言葉の力で、<br>苦をなくし、<br>楽をふやす。</h2>
+        <div class="mission-body">
+          <p>「971」という屋号は、忍者道具の「苦無（クナイ）」に由来します。忍者にまつわる名前を選んだ理由は2つあります。1つは、私自身が忍者の里・三重県伊賀市の出身であり、忍者の文化や思想を未来に伝えるお手伝いをしたい、と考えているから。そしてもう1つは「忍者とコピーライターって似ているな」という気づきを得たからです。</p>
+          <p>かつて忍者は全国から情報を集め、それを主君の繁栄のために活用してきました。コピーライターの仕事も、クライアントの課題や社会のトレンドなど、さまざまな情報をベースにコミュニケーションを設計し、事業の発展に貢献することが使命です。</p>
+          <p>忍者のようにクライアントを影から支え、深く刺さる言葉で、変幻自在な提案で、人や社会が抱える課題に立ち向かっていく。そして、世の中から不当な「苦しい」を無くし、「楽しい」をつくっていきます。</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Service -->
+    <div class="about-service">
+      <div class="smk svs1" aria-hidden="true"><svg viewBox="0 0 130 200" xmlns="http://www.w3.org/2000/svg"><ellipse cx="65" cy="160" rx="34" ry="24"/><ellipse cx="55" cy="126" rx="38" ry="29"/><ellipse cx="68" cy="94" rx="32" ry="26"/><ellipse cx="56" cy="64" rx="26" ry="21"/><ellipse cx="66" cy="38" rx="22" ry="18"/><ellipse cx="60" cy="16" rx="14" ry="12"/></svg></div>
+      <div class="smk svs2" aria-hidden="true"><svg viewBox="0 0 70 50" xmlns="http://www.w3.org/2000/svg"><ellipse cx="18" cy="34" rx="14" ry="11"/><ellipse cx="36" cy="24" rx="18" ry="14"/><ellipse cx="54" cy="32" rx="13" ry="10"/><ellipse cx="28" cy="13" rx="11" ry="9"/></svg></div>
+      <div class="smk svs3" aria-hidden="true"><svg viewBox="0 0 200 130" xmlns="http://www.w3.org/2000/svg"><ellipse cx="42" cy="84" rx="36" ry="28"/><ellipse cx="84" cy="62" rx="44" ry="34"/><ellipse cx="130" cy="78" rx="36" ry="28"/><ellipse cx="66" cy="44" rx="28" ry="23"/><ellipse cx="108" cy="36" rx="34" ry="27"/><ellipse cx="155" cy="58" rx="26" ry="21"/></svg></div>
+      <div class="sec-label" style="margin-bottom:36px;">Service</div>
+      <div class="service-grid">
+        <div class="service-item"><span class="service-num">01</span><div><p class="service-text">言語化支援</p><p class="service-sub">コンセプト・キャッチコピー・ネーミング開発、企業理念策定 等</p></div></div>
+        <div class="service-item"><span class="service-num">02</span><div><p class="service-text">ブランディング支援</p><p class="service-sub">ブランドアイデンティティ設計、クリエイティブディレクション 等</p></div></div>
+        <div class="service-item"><span class="service-num">03</span><div><p class="service-text">プロモーション支援</p><p class="service-sub">広告・パンフレット・Webサイト・イベント・動画・PR・SNSコンテンツ等の企画・制作・運用</p></div></div>
+        <div class="service-item"><span class="service-num">04</span><div><p class="service-text">取材記事制作</p></div></div>
+        <div class="service-item"><span class="service-num">05</span><div><p class="service-text">コピーライティングに関するセミナー</p></div></div>
+        <div class="service-item"><span class="service-num">06</span><div><p class="service-text">アナログゲーム制作</p></div></div>
+        <div class="service-item"><span class="service-num">07</span><div><p class="service-text">事業構想支援</p></div></div>
+        <div class="service-item"><span class="service-num">08</span><div><p class="service-text">忍者に関する啓蒙活動</p></div></div>
+      </div>
+    </div>
+
+    <!-- Profile -->
+    <div class="about-profile">
+      <div class="sec-label" style="margin-bottom:36px;">Profile</div>
+      <div class="profile-grid">
+        <div class="profile-photo">
+          <div class="smk ps1" aria-hidden="true"><svg viewBox="0 0 200 130" xmlns="http://www.w3.org/2000/svg"><ellipse cx="42" cy="84" rx="36" ry="28"/><ellipse cx="84" cy="62" rx="44" ry="34"/><ellipse cx="130" cy="78" rx="36" ry="28"/><ellipse cx="66" cy="44" rx="28" ry="23"/><ellipse cx="108" cy="36" rx="34" ry="27"/><ellipse cx="155" cy="58" rx="26" ry="21"/></svg></div>
+          <div class="smk ps2" aria-hidden="true"><svg viewBox="0 0 70 50" xmlns="http://www.w3.org/2000/svg"><ellipse cx="18" cy="34" rx="14" ry="11"/><ellipse cx="36" cy="24" rx="18" ry="14"/><ellipse cx="54" cy="32" rx="13" ry="10"/><ellipse cx="28" cy="13" rx="11" ry="9"/></svg></div>
+          <img class="photo-normal" src="images/017_260207_PROFILE%201.jpg" alt="岡澤修平" />
+          <img class="photo-hover"  src="images/007_260207_PROFILE%201.jpg" alt="岡澤修平" />
+        </div>
+        <div>
+          <p class="profile-name">岡澤 修平</p>
+          <p class="profile-name-en">Shuhei Okazawa</p>
+          <p class="profile-roles">コピーライター／クリエイティブディレクター／事業構想士／忍者</p>
+          <p class="profile-bio">三重県伊賀市出身。大阪芸術大学芸術学部文芸学科卒業、事業構想大学院大学修士課程修了。</p>
+          <p class="profile-bio">広告制作会社、広告代理店等で10年以上コピーライターとして勤務。2020年独立。</p>
+          <p class="profile-bio">「向き合うこと」を大切に、人や企業の想いを言語化し、進化するための力に変えてきました。また、言葉を軸としたコミュニケーション設計やクリエイティブディレクションも得意としています。</p>
+          <p class="profile-bio">忍者の里・三重県伊賀市の出身者として、忍者の研究や事業構想にも取り組んでいます。</p>
+          <p class="profile-bio">第51回日経MJ広告賞「大賞」、第27回京都広告賞「京都商工会議所会頭賞」受賞。</p>
+          <p class="profile-bio">趣味はお酒、サウナ、旅行、読書、ボードゲーム、ピックルボールなど。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ NEWS ══ -->
+  <section id="news" class="sec">
+    <div class="smk ns1" aria-hidden="true"><svg viewBox="0 0 130 200" xmlns="http://www.w3.org/2000/svg"><ellipse cx="65" cy="160" rx="34" ry="24"/><ellipse cx="55" cy="126" rx="38" ry="29"/><ellipse cx="68" cy="94" rx="32" ry="26"/><ellipse cx="56" cy="64" rx="26" ry="21"/><ellipse cx="66" cy="38" rx="22" ry="18"/><ellipse cx="60" cy="16" rx="14" ry="12"/></svg></div>
+    <div class="sec-label" style="margin-bottom:32px;">News</div>
+    <div class="news-list" id="newsList">
+      <!-- JS で content/news.json から動的に挿入 -->
+    </div>
+  </section>
+
+  <!-- ══ CONTACT ══ -->
+  <section id="contact" class="sec">
+    <div class="smk cs1" aria-hidden="true"><svg viewBox="0 0 280 90" xmlns="http://www.w3.org/2000/svg"><ellipse cx="24" cy="62" rx="20" ry="15"/><ellipse cx="62" cy="46" rx="34" ry="23"/><ellipse cx="112" cy="56" rx="28" ry="19"/><ellipse cx="162" cy="42" rx="36" ry="25"/><ellipse cx="216" cy="52" rx="30" ry="20"/><ellipse cx="258" cy="60" rx="22" ry="16"/><ellipse cx="88" cy="28" rx="20" ry="15"/><ellipse cx="140" cy="22" rx="26" ry="18"/><ellipse cx="192" cy="26" rx="22" ry="16"/></svg></div>
+    <div class="smk cs2" aria-hidden="true"><svg viewBox="0 0 70 50" xmlns="http://www.w3.org/2000/svg"><ellipse cx="18" cy="34" rx="14" ry="11"/><ellipse cx="36" cy="24" rx="18" ry="14"/><ellipse cx="54" cy="32" rx="13" ry="10"/><ellipse cx="28" cy="13" rx="11" ry="9"/></svg></div>
+    <div class="contact-inner">
+      <div class="sec-label" style="margin-bottom:32px;">Contact</div>
+      <p class="contact-lead">お仕事のご依頼・ご相談はお気軽にご連絡ください。<br>通常2〜3営業日以内にご返信いたします。</p>
+      <form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/thanks">
+        <input type="hidden" name="form-name" value="contact" />
+        <p style="display:none"><label>スパム対策 <input name="bot-field" /></label></p>
+        <div class="form-row">
+          <div class="form-field"><label>お名前<span class="req">*</span></label><input type="text" name="name" placeholder="服部半蔵" required /></div>
+          <div class="form-field"><label>会社名・団体名</label><input type="text" name="company" placeholder="株式会社〇〇" /></div>
+        </div>
+        <div class="form-row">
+          <div class="form-field"><label>メールアドレス<span class="req">*</span></label><input type="email" name="email" placeholder="example@email.com" required /></div>
+          <div class="form-field"><label>メールアドレス（確認）<span class="req">*</span></label><input type="email" name="email-confirm" placeholder="example@email.com" required /></div>
+        </div>
+        <div class="form-field"><label>電話番号</label><input type="tel" name="tel" placeholder="090-0000-0000" /></div>
+        <div class="form-field">
+          <label>お問い合わせ内容<span class="req">*</span></label>
+          <div class="inquiry-types">
+            <label class="radio-item"><input type="radio" name="inquiry" value="お仕事に関するご相談" required /> お仕事に関するご相談</label>
+            <label class="radio-item"><input type="radio" name="inquiry" value="忍者に関するご相談" /> 忍者に関するご相談</label>
+            <label class="radio-item"><input type="radio" name="inquiry" value="セミナー・勉強会のご相談" /> セミナー・勉強会のご相談</label>
+            <label class="radio-item"><input type="radio" name="inquiry" value="その他" /> その他</label>
+          </div>
+        </div>
+        <div class="form-field"><label>詳細・メッセージ</label><textarea name="message" placeholder="お問い合わせの詳細をご記入ください"></textarea></div>
+        <button type="submit" class="form-submit">送信する</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- ══ FOOTER ══ -->
+  <footer>
+    <div class="footer-logo"><img src="images/logo_white.png" alt="971" /></div>
+    <div class="footer-right">
+      <div class="footer-sns">
+        <a href="#" target="_blank">X / Twitter</a>
+        <a href="#" target="_blank">Instagram</a>
+        <a href="#" target="_blank">note</a>
+        <a href="#" target="_blank">Facebook</a>
+      </div>
+      <p class="footer-copy">© 2025 971 / Shuhei Okazawa. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    /* ── ハンバーガー ── */
+    const hbg    = document.getElementById('hbg');
+    const drawer = document.getElementById('drawer');
+    hbg.addEventListener('click', () => {
+      const isOpen = drawer.classList.toggle('open');
+      hbg.classList.toggle('open', isOpen);
+      document.body.style.overflow = isOpen ? 'hidden' : '';
+    });
+    function closeMenu() {
+      drawer.classList.remove('open');
+      hbg.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    /* ── ハンバーガー色切り替え ── */
+    const darkSections = ['hero'];
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          hbg.classList.toggle('dark', !darkSections.includes(e.target.id));
+        }
+      });
+    }, { threshold: 0.5 });
+    document.querySelectorAll('section[id], footer').forEach(s => observer.observe(s));
+
+    /* ── Works More ボタン ── */
+    const moreBtn = document.getElementById('worksMore');
+    moreBtn.addEventListener('click', () => {
+      document.querySelectorAll('#worksGrid .work-card.hidden').forEach(c => c.classList.remove('hidden'));
+      moreBtn.classList.add('hidden');
+    });
+
+    /* ── News アコーディオン ── */
+    function toggleNews(btn) {
+      const item = btn.closest('.news-item');
+      const body = item.querySelector('.news-body');
+      const isOpen = item.classList.toggle('open');
+      body.style.maxHeight = isOpen ? body.scrollHeight + 'px' : '0';
+    }
+
+    /* ── Works 動的読み込み ── */
+    async function loadWorks() {
+      try {
+        const res  = await fetch('/content/works.json');
+        const data = await res.json();
+        const items = data.items || [];
+        const grid  = document.getElementById('worksGrid');
+        const INITIAL = 4;
+
+        grid.innerHTML = items.map((item, i) => `
+          <a class="work-card${i >= INITIAL ? ' hidden' : ''}" href="${item.url || '#'}">
+            <div class="work-img">
+              ${item.image
+                ? `<img src="${item.image}" alt="${item.title}" loading="lazy" />`
+                : '<div class="work-img-placeholder">Visual / Image</div>'
+              }
+            </div>
+            <div class="work-body">
+              <p class="work-title">${item.title}</p>
+              <div class="work-tags">
+                ${(item.categories || []).map(c => `<span class="tag">${c}</span>`).join('')}
+              </div>
+            </div>
+          </a>
+        `).join('');
+
+        if (items.length > INITIAL) {
+          moreBtn.classList.remove('hidden');
+        }
+      } catch (e) {
+        console.error('Works load error:', e);
+      }
+    }
+
+    /* ── News 動的読み込み ── */
+    async function loadNews() {
+      try {
+        const res  = await fetch('/content/news.json');
+        const data = await res.json();
+        const items = data.items || [];
+        const list  = document.getElementById('newsList');
+
+        list.innerHTML = items.map(item => `
+          <div class="news-item">
+            <button class="news-trigger" onclick="toggleNews(this)">
+              <span class="news-date">${item.date}</span>
+              <span class="news-cat">${item.category}</span>
+              <span class="news-ttl">${item.title}</span>
+              <span class="news-arrow">›</span>
+            </button>
+            <div class="news-body">
+              <div class="news-body-inner">
+                ${item.body ? `<p>${item.body}</p>` : ''}
+                ${item.url ? `<a href="${item.url}" target="_blank" rel="noopener noreferrer">詳細はこちら →</a>` : ''}
+              </div>
+            </div>
+          </div>
+        `).join('');
+      } catch (e) {
+        console.error('News load error:', e);
+      }
+    }
+
+    /* ── 初期化 ── */
+    document.addEventListener('DOMContentLoaded', () => {
+      loadWorks();
+      loadNews();
+    });
+  </script>
+</body>
+</html>

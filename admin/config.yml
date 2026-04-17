@@ -1,0 +1,50 @@
+backend:
+  name: github
+  repo: okacci0325/971-website
+  branch: main
+
+media_folder: images/uploads
+public_folder: /images/uploads
+
+locale: ja
+
+collections:
+  - name: works
+    label: Works（実績）
+    files:
+      - label: 実績リスト
+        name: works_list
+        file: content/works.json
+        fields:
+          - label: 実績
+            name: items
+            widget: list
+            fields:
+              - { label: タイトル, name: title, widget: string }
+              - label: カテゴリ
+                name: categories
+                widget: list
+                field: { label: カテゴリ, name: category, widget: string }
+              - { label: 画像, name: image, widget: image, required: false, hint: "空白でもOK（プレースホルダー表示）" }
+              - { label: リンク先URL, name: url, widget: string, required: false, hint: "省略可（#でOK）" }
+              - { label: 最初から表示する, name: featured, widget: boolean, default: true, hint: "falseにすると「More」ボタンで展開" }
+
+  - name: news
+    label: News（お知らせ）
+    files:
+      - label: お知らせリスト
+        name: news_list
+        file: content/news.json
+        fields:
+          - label: お知らせ
+            name: items
+            widget: list
+            fields:
+              - { label: 日付, name: date, widget: string, hint: "例: 2025.12.01" }
+              - label: カテゴリ
+                name: category
+                widget: select
+                options: ["Award", "Seminar", "Media", "News", "Other"]
+              - { label: タイトル, name: title, widget: string }
+              - { label: 本文, name: body, widget: text, required: false }
+              - { label: リンク先URL, name: url, widget: string, required: false }

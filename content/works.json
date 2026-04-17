@@ -1,0 +1,46 @@
+{
+  "items": [
+    {
+      "title": "Panasonic｜ブランドコピー開発",
+      "categories": ["キャッチコピー", "ブランディング"],
+      "image": "",
+      "url": "#",
+      "featured": true
+    },
+    {
+      "title": "Nissan｜広告キャンペーン",
+      "categories": ["キャッチコピー", "コンセプト"],
+      "image": "",
+      "url": "#",
+      "featured": true
+    },
+    {
+      "title": "Disney JCB Card｜プロモーション",
+      "categories": ["コンセプト", "ブランディング"],
+      "image": "",
+      "url": "#",
+      "featured": true
+    },
+    {
+      "title": "Asics｜コミュニケーション戦略",
+      "categories": ["コンセプト", "キャッチコピー"],
+      "image": "",
+      "url": "#",
+      "featured": true
+    },
+    {
+      "title": "LINE証券｜コンセプト開発",
+      "categories": ["コンセプト", "ネーミング"],
+      "image": "",
+      "url": "#",
+      "featured": false
+    },
+    {
+      "title": "企業ブランディング｜キーメッセージ開発",
+      "categories": ["ブランディング", "取材"],
+      "image": "",
+      "url": "#",
+      "featured": false
+    }
+  ]
+}
