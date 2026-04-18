@@ -25,7 +25,14 @@ collections:
                 name: categories
                 widget: list
                 field: { label: カテゴリ, name: category, widget: string }
-              - { label: 画像, name: image, widget: image, required: false, hint: "空白でもOK（プレースホルダー表示）" }
+              - { label: サムネイル画像, name: image, widget: image, required: false, hint: "一覧に表示されるメイン画像" }
+              - label: 詳細画像（複数可）
+                name: images
+                widget: list
+                required: false
+                field: { label: 画像, name: image, widget: image }
+              - { label: 説明文, name: description, widget: text, required: false }
+              - { label: 動画URL, name: video_url, widget: string, required: false, hint: "YouTubeのURL（例: https://youtu.be/xxxxx）または動画ファイルのURL" }
               - { label: リンク先URL, name: url, widget: string, required: false, hint: "省略可（#でOK）" }
               - { label: 最初から表示する, name: featured, widget: boolean, default: true, hint: "falseにすると「More」ボタンで展開" }
 

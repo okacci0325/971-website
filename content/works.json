@@ -2,62 +2,61 @@
   "items": [
     {
       "title": "新日本空調｜企業広告",
-      "categories": [
-        "キャッチコピー",
-        "コンセプトワーク",
-        "ブランディング"
-      ],
+      "categories": ["キャッチコピー", "コンセプトワーク", "ブランディング"],
       "image": "/images/uploads/snk_kv_260328_fin_yoko_color.jpg",
+      "images": [],
+      "description": "",
+      "video_url": "",
       "url": "",
       "featured": true
     },
     {
       "title": "Nissan｜広告キャンペーン",
-      "categories": [
-        "キャッチコピー",
-        "コンセプト"
-      ],
+      "categories": ["キャッチコピー", "コンセプト"],
       "image": "",
+      "images": [],
+      "description": "",
+      "video_url": "",
       "url": "#",
       "featured": true
     },
     {
       "title": "Disney JCB Card｜プロモーション",
-      "categories": [
-        "コンセプト",
-        "ブランディング"
-      ],
+      "categories": ["コンセプト", "ブランディング"],
       "image": "",
+      "images": [],
+      "description": "",
+      "video_url": "",
       "url": "#",
       "featured": true
     },
     {
       "title": "Asics｜コミュニケーション戦略",
-      "categories": [
-        "コンセプト",
-        "キャッチコピー"
-      ],
+      "categories": ["コンセプト", "キャッチコピー"],
       "image": "",
+      "images": [],
+      "description": "",
+      "video_url": "",
       "url": "#",
       "featured": true
     },
     {
       "title": "LINE証券｜コンセプト開発",
-      "categories": [
-        "コンセプト",
-        "ネーミング"
-      ],
+      "categories": ["コンセプト", "ネーミング"],
       "image": "",
+      "images": [],
+      "description": "",
+      "video_url": "",
       "url": "#",
       "featured": false
     },
     {
       "title": "企業ブランディング｜キーメッセージ開発",
-      "categories": [
-        "ブランディング",
-        "取材"
-      ],
+      "categories": ["ブランディング", "取材"],
       "image": "",
+      "images": [],
+      "description": "",
+      "video_url": "",
       "url": "#",
       "featured": false
     }
