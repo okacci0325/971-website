@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>971 | 変言自在</title>
+  <link rel="icon" type="image/png" href="/images/logo_black.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@400;500;700;800&family=Noto+Serif+JP:wght@300;400;500;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
@@ -623,71 +624,68 @@
       pointer-events: none;
       transition: opacity 0.35s ease;
     }
-    .modal-overlay.open {
-      opacity: 1;
-      pointer-events: auto;
-    }
+    .modal-overlay.open { opacity: 1; pointer-events: auto; }
     .modal-panel {
       background: var(--white);
-      width: 100%;
+      width: 90vw;
       max-width: 1000px;
-      max-height: 90vh;
-      overflow-y: auto;
+      height: 82vh;
+      display: flex;
+      flex-direction: column;
       position: relative;
       transform: translateY(24px);
       transition: transform 0.35s ease;
+      overflow: hidden;
     }
-    .modal-overlay.open .modal-panel {
-      transform: translateY(0);
-    }
+    .modal-overlay.open .modal-panel { transform: translateY(0); }
     .modal-close {
-      position: sticky;
-      top: 0;
-      float: right;
-      margin: 16px 16px 0 0;
+      position: absolute;
+      top: 12px; right: 12px;
       z-index: 10;
       background: var(--navy);
       color: var(--white);
       border: none;
-      width: 36px;
-      height: 36px;
-      font-size: 18px;
-      line-height: 1;
+      width: 36px; height: 36px;
+      font-size: 16px;
       display: flex;
       align-items: center;
       justify-content: center;
       transition: background 0.2s;
     }
     .modal-close:hover { background: #0d2860; }
+
+    /* 本体：左右2カラム、高さ100% */
     .modal-body {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 0;
-      clear: both;
+      grid-template-columns: 55% 45%;
+      flex: 1;
+      min-height: 0;
+      overflow: hidden;
     }
+
     /* 左：メディア */
     .modal-media {
-      background: #f0eeea;
-      padding: 0;
+      display: flex;
+      flex-direction: column;
+      background: #111;
+      overflow: hidden;
     }
     .modal-media-main {
-      width: 100%;
-      background: #111;
+      flex: 1;
+      min-height: 0;
       display: flex;
       align-items: center;
       justify-content: center;
-      min-height: 200px;
+      overflow: hidden;
+      background: #111;
     }
     .modal-media-main img {
-      width: 100%;
-      height: auto;
-      max-height: 55vh;
+      width: 100%; height: 100%;
       object-fit: contain;
       display: block;
     }
     .modal-video-wrap {
-      width: 100%;
-      aspect-ratio: 16/9;
+      width: 100%; height: 100%;
     }
     .modal-media-main iframe,
     .modal-media-main video {
@@ -703,64 +701,65 @@
       font-family: var(--sans);
       font-size: 11px;
       letter-spacing: 0.2em;
-      color: rgba(0,0,0,0.2);
+      color: rgba(255,255,255,0.2);
       text-transform: uppercase;
-      background: linear-gradient(135deg, #e8e6e0, #d4d2cc);
     }
     .modal-thumbs {
       display: flex;
       gap: 3px;
       padding: 3px;
-      background: #e8e6e0;
-      flex-wrap: wrap;
+      background: #222;
+      flex-shrink: 0;
     }
     .modal-thumb {
-      width: calc(25% - 3px);
-      aspect-ratio: 4/3;
+      width: 64px; height: 44px;
       object-fit: cover;
       cursor: pointer;
-      opacity: 0.65;
+      opacity: 0.55;
       transition: opacity 0.2s;
       border: 2px solid transparent;
       background: none;
       padding: 0;
+      flex-shrink: 0;
     }
     .modal-thumb:hover,
-    .modal-thumb.active { opacity: 1; border-color: var(--navy); }
+    .modal-thumb.active { opacity: 1; border-color: white; }
     .modal-thumb-video {
       background: var(--navy);
       display: flex;
       align-items: center;
       justify-content: center;
       color: white;
-      font-size: 20px;
+      font-size: 18px;
     }
+
     /* 右：情報 */
     .modal-info {
-      padding: 40px 40px 48px;
+      padding: 48px 36px 36px;
       display: flex;
       flex-direction: column;
-      gap: 20px;
+      gap: 18px;
+      overflow-y: auto;
     }
     .modal-tags { display: flex; flex-wrap: wrap; gap: 6px; }
     .modal-title {
       font-family: var(--serif);
-      font-size: clamp(18px, 2vw, 24px);
+      font-size: clamp(16px, 1.8vw, 22px);
       font-weight: 700;
       color: var(--black);
-      line-height: 1.5;
+      line-height: 1.6;
       letter-spacing: 0.05em;
     }
     .modal-desc {
       font-family: var(--serif);
-      font-size: 14px;
+      font-size: 13px;
       color: #444;
-      line-height: 2.0;
+      line-height: 2.1;
       white-space: pre-wrap;
+      flex: 1;
     }
     .modal-link {
       display: inline-block;
-      margin-top: auto;
       font-family: var(--sans);
       font-size: 11px;
       font-weight: 600;
@@ -772,6 +771,7 @@
       text-decoration: none;
       transition: background 0.2s;
       align-self: flex-start;
+      flex-shrink: 0;
     }
     .modal-link:hover { background: #0d2860; }
     .modal-link.hidden { display: none; }
