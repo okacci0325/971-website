@@ -2,17 +2,27 @@
   "items": [
     {
       "title": "新日本空調｜企業広告",
-      "categories": ["キャッチコピー", "コンセプトワーク", "ブランディング"],
+      "categories": [
+        "キャッチコピー",
+        "コンセプトワーク",
+        "ブランディング"
+      ],
       "image": "/images/uploads/snk_kv_260328_fin_yoko_color.jpg",
-      "images": [],
-      "description": "",
-      "video_url": "",
-      "url": "",
+      "images": [
+        "/images/uploads/snk_kv_260328_fin_yoko_color.jpg",
+        "/images/uploads/snk_newspapar-nikkei_15d.jpg"
+      ],
+      "description": "空気の技術を活かして建築設備の設計・施工を行う新日本空調の企業広告のコピーワーク全般および企画・PRの一部を担当しました。この星を守り続けてきたウルトラマンのように、\n快適や暮らしを守っていきたいという同社の決意を「カイテキヒーロー」というキャッチーな言葉で表現。新聞や各種動画メディアで展開され、雑誌やWebメディアにも取り上げられました。",
+      "video_url": "https://www.youtube.com/watch?v=quykAV8-ACE",
+      "url": "https://www.snk.co.jp/Portals/0/cm/",
       "featured": true
     },
     {
       "title": "Nissan｜広告キャンペーン",
-      "categories": ["キャッチコピー", "コンセプト"],
+      "categories": [
+        "キャッチコピー",
+        "コンセプト"
+      ],
       "image": "",
       "images": [],
       "description": "",
@@ -22,7 +32,10 @@
     },
     {
       "title": "Disney JCB Card｜プロモーション",
-      "categories": ["コンセプト", "ブランディング"],
+      "categories": [
+        "コンセプト",
+        "ブランディング"
+      ],
       "image": "",
       "images": [],
       "description": "",
@@ -32,7 +45,10 @@
     },
     {
       "title": "Asics｜コミュニケーション戦略",
-      "categories": ["コンセプト", "キャッチコピー"],
+      "categories": [
+        "コンセプト",
+        "キャッチコピー"
+      ],
       "image": "",
       "images": [],
       "description": "",
@@ -42,7 +58,10 @@
     },
     {
       "title": "LINE証券｜コンセプト開発",
-      "categories": ["コンセプト", "ネーミング"],
+      "categories": [
+        "コンセプト",
+        "ネーミング"
+      ],
       "image": "",
       "images": [],
       "description": "",
@@ -52,7 +71,10 @@
     },
     {
       "title": "企業ブランディング｜キーメッセージ開発",
-      "categories": ["ブランディング", "取材"],
+      "categories": [
+        "ブランディング",
+        "取材"
+      ],
       "image": "",
       "images": [],
       "description": "",
