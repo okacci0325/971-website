@@ -29,6 +29,26 @@ collections:
               - { label: リンク先URL, name: url, widget: string, required: false, hint: "省略可（#でOK）" }
               - { label: 最初から表示する, name: featured, widget: boolean, default: true, hint: "falseにすると「More」ボタンで展開" }
 
+  - name: settings
+    label: サイト設定
+    files:
+      - label: マーキーコピー
+        name: marquee
+        file: content/settings.json
+        fields:
+          - label: マーキー1行目（左流れ）
+            name: marquee1
+            widget: list
+            field: { label: テキスト, name: text, widget: string }
+          - label: マーキー2行目（右流れ）
+            name: marquee2
+            widget: list
+            field: { label: テキスト, name: text, widget: string }
+          - label: マーキー3行目（左流れ）
+            name: marquee3
+            widget: list
+            field: { label: テキスト, name: text, widget: string }
+
   - name: news
     label: News（お知らせ）
     files:

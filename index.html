@@ -751,43 +751,8 @@
           <p class="hero-reading">へんげんじざい</p>
         </div>
       </div>
-      <div class="hero-marquee-wrap">
-        <div class="mq-row">
-          <div class="mq-track">
-            <span class="mq-item">言葉が、世界を変える。</span>
-            <span class="mq-item">一行が、すべてを動かす。</span>
-            <span class="mq-item">伝わる言葉を、つくる。</span>
-            <span class="mq-item">コピーは、戦略だ。</span>
-            <span class="mq-item">言葉が、世界を変える。</span>
-            <span class="mq-item">一行が、すべてを動かす。</span>
-            <span class="mq-item">伝わる言葉を、つくる。</span>
-            <span class="mq-item">コピーは、戦略だ。</span>
-          </div>
-        </div>
-        <div class="mq-row">
-          <div class="mq-track">
-            <span class="mq-item">買う理由を、つくる。</span>
-            <span class="mq-item">選ばれる言葉には、理由がある。</span>
-            <span class="mq-item">忘れられないコピーを。</span>
-            <span class="mq-item">想いは言葉になって、初めて伝わる。</span>
-            <span class="mq-item">買う理由を、つくる。</span>
-            <span class="mq-item">選ばれる言葉には、理由がある。</span>
-            <span class="mq-item">忘れられないコピーを。</span>
-            <span class="mq-item">想いは言葉になって、初めて伝わる。</span>
-          </div>
-        </div>
-        <div class="mq-row">
-          <div class="mq-track">
-            <span class="mq-item">あなたのブランドに、魂を込める。</span>
-            <span class="mq-item">深く刺さる言葉で。</span>
-            <span class="mq-item">共感が、行動を生む。</span>
-            <span class="mq-item">変言自在。</span>
-            <span class="mq-item">あなたのブランドに、魂を込める。</span>
-            <span class="mq-item">深く刺さる言葉で。</span>
-            <span class="mq-item">共感が、行動を生む。</span>
-            <span class="mq-item">変言自在。</span>
-          </div>
-        </div>
+      <div class="hero-marquee-wrap" id="marqueeWrap">
+        <!-- JS で content/settings.json から動的に挿入 -->
       </div>
     </div>
     <div class="hero-subcopy">変わるための言葉と伴走</div>
@@ -1035,10 +1000,29 @@
       }
     }
 
+    /* ── マーキー動的読み込み ── */
+    async function loadMarquee() {
+      try {
+        const res  = await fetch('/content/settings.json');
+        const data = await res.json();
+        const wrap = document.getElementById('marqueeWrap');
+        const rows = [data.marquee1, data.marquee2, data.marquee3];
+
+        wrap.innerHTML = rows.map(items => {
+          const doubled = [...items, ...items];
+          const spans = doubled.map(t => `<span class="mq-item">${t}</span>`).join('');
+          return `<div class="mq-row"><div class="mq-track">${spans}</div></div>`;
+        }).join('');
+      } catch (e) {
+        console.error('Marquee load error:', e);
+      }
+    }
+
     /* ── 初期化 ── */
     document.addEventListener('DOMContentLoaded', () => {
       loadWorks();
       loadNews();
+      loadMarquee();
     });
   </script>
 </body>
