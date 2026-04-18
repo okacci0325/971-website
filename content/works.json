@@ -42,16 +42,22 @@
       "featured": true
     },
     {
-      "title": "Asics｜コミュニケーション戦略",
+      "title": "PrimaryTouch｜ブランディング",
       "categories": [
-        "コンセプト",
-        "キャッチコピー"
+        "コンセプトワーク",
+        "ブランディング"
       ],
-      "image": "",
-      "images": [],
-      "description": "",
+      "image": "/images/uploads/primarytouch_1.jpg",
+      "images": [
+        "/images/uploads/primarytouch_2b.jpg",
+        "/images/uploads/primarytouch_3w.jpg",
+        "/images/uploads/primarytouch_4b.jpg",
+        "/images/uploads/primarytouch_5.jpg",
+        "/images/uploads/primarytouch-9.jpg"
+      ],
+      "description": "AIとデータを活用して地域医療の課題解決に挑むPrimaryTouchのブランディングを担当。「診療は、新領域へ。」というコンセプトを軸に、医療EXPOで活用するパンフレットと動画を制作しました。\n一般的に想起される医療イメージとは一線を画するデザイン表現によって、新しい領域へ踏み出していく姿勢を視覚的に感じさせます。",
       "video_url": "",
-      "url": "#",
+      "url": "https://www.primarytouch.co.jp/",
       "featured": true
     },
     {
