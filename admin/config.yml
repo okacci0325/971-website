@@ -2,6 +2,7 @@ backend:
   name: github
   repo: okacci0325/971-website
   branch: main
+  base_url: https://971-oauth.okacci.workers.dev
 
 media_folder: images/uploads
 public_folder: /images/uploads

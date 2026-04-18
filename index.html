@@ -1029,9 +1029,10 @@
     <div class="contact-inner">
       <div class="sec-label" style="margin-bottom:32px;">Contact</div>
       <p class="contact-lead">お仕事のご依頼・ご相談はお気軽にご連絡ください。<br>通常2〜3営業日以内にご返信いたします。</p>
-      <form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/thanks">
-        <input type="hidden" name="form-name" value="contact" />
-        <p style="display:none"><label>スパム対策 <input name="bot-field" /></label></p>
+      <form method="POST" action="https://formspree.io/f/mjgjwdro">
+        <input type="hidden" name="_next" value="/thanks.html" />
+        <input type="hidden" name="_subject" value="971 お問い合わせ" />
+        <p style="display:none"><label>スパム対策 <input name="_gotcha" /></label></p>
         <div class="form-row">
           <div class="form-field"><label>お名前<span class="req">*</span></label><input type="text" name="name" placeholder="服部半蔵" required /></div>
           <div class="form-field"><label>会社名・団体名</label><input type="text" name="company" placeholder="株式会社〇〇" /></div>
