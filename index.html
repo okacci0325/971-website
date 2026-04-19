@@ -1232,8 +1232,13 @@
         const grid = document.getElementById('worksGrid');
         const INITIAL = 4;
 
-        grid.innerHTML = worksData.map((item, i) => `
-          <button class="work-card${i >= INITIAL ? ' hidden' : ''}" data-idx="${i}">
+        // published が false のアイテムを除外（未設定は表示）
+        const visibleItems = worksData
+          .map((item, i) => ({ ...item, _origIdx: i }))
+          .filter(item => item.published !== false);
+
+        grid.innerHTML = visibleItems.map((item, i) => `
+          <button class="work-card${i >= INITIAL ? ' hidden' : ''}" data-idx="${item._origIdx}">
             <div class="work-img">
               ${item.image
                 ? `<img src="${item.image}" alt="${item.title}" loading="lazy" />`
@@ -1253,7 +1258,7 @@
           card.addEventListener('click', () => openModal(+card.dataset.idx));
         });
 
-        if (worksData.length > INITIAL) moreBtn.classList.remove('hidden');
+        if (visibleItems.length > INITIAL) moreBtn.classList.remove('hidden');
       } catch (e) {
         console.error('Works load error:', e);
       }

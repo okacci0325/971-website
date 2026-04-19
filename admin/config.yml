@@ -36,6 +36,7 @@ collections:
               - { label: 動画URL, name: video_url, widget: string, required: false, hint: "YouTubeのURL（例: https://youtu.be/xxxxx）または動画ファイルのURL" }
               - { label: リンク先URL, name: url, widget: string, required: false, hint: "省略可（#でOK）" }
               - { label: 最初から表示する, name: featured, widget: boolean, default: true, hint: "falseにすると「More」ボタンで展開" }
+              - { label: 公開する, name: published, widget: boolean, default: true, hint: "falseにするとサイトに表示されません" }
 
   - name: settings
     label: サイト設定

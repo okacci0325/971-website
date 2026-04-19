@@ -14,7 +14,8 @@
       "description": "空気の技術を活かして建築設備の設計・施工を行う新日本空調の企業広告のコピーワーク全般および企画・PRの一部を担当しました。この星を守り続けてきたウルトラマンのように、\n快適や暮らしを守っていきたいという同社の決意を「カイテキヒーロー」というキャッチーな言葉で表現。新聞や各種動画メディアで展開され、雑誌やWebメディアにも取り上げられました。",
       "video_url": "https://www.youtube.com/watch?v=quykAV8-ACE",
       "url": "https://www.snk.co.jp/Portals/0/cm/",
-      "featured": true
+      "featured": true,
+      "published": true
     },
     {
       "title": "Frictio｜ブランドサイト",
@@ -27,19 +28,21 @@
       "description": "顧客取引におけるあらゆるコンテキストを理解し、営業活動を後押しするAIネイティブCRM「Frictio」のブランドメッセージ開発およびWebサイトのライティングを担当しました。「営業現場の摩擦（Friction）をなくす」という使命を帯びたサービス名を活かすために、「Zero Friction, More Action.」というブランドメッセージに。Webサイトのライティングは、サービスの革新性をわかりやすく説明することに注力しました。",
       "video_url": "",
       "url": "https://frictio.ai/",
-      "featured": true
+      "featured": true,
+      "published": true
     },
     {
       "title": "ニチバン｜新聞広告",
       "categories": [
         "キャッチコピー"
       ],
-      "image": "/images/uploads/セロテープ.png",
+      "image": "/images/uploads/セロテープ.png",
       "images": [],
       "description": "ニチバンのSDGs達成に向けたチャレンジ「Small Action For the Life」を伝える広告のコピーライティングを担当。セロテープが持つファクトを大胆かつ丁寧に伝えることを目指しました。第51回 日経MJ広告賞にて大賞を受賞。\n",
       "video_url": "",
       "url": "#",
-      "featured": true
+      "featured": true,
+      "published": true
     },
     {
       "title": "PrimaryTouch｜ブランディング",
@@ -58,7 +61,8 @@
       "description": "AIとデータを活用して地域医療の課題解決に挑むPrimaryTouchのブランディングを担当。「診療は、新領域へ。」というコンセプトを軸に、医療EXPOで活用するパンフレットと動画を制作しました。\n一般的に想起される医療イメージとは一線を画するデザイン表現によって、新しい領域へ踏み出していく姿勢を視覚的に感じさせます。",
       "video_url": "",
       "url": "https://www.primarytouch.co.jp/",
-      "featured": true
+      "featured": true,
+      "published": true
     },
     {
       "title": "ELIZABETH｜キービジュアル",
@@ -70,7 +74,8 @@
       "description": "唇の色・ツヤ・うるおいを守るティント「RIP GUARDIAN」のキャッチコピーを開発しました。\n「GUARDIAN＝守護神」という商品名を活かすため、「神」というフレーズを活用して印象的な表現をめざしました。\n",
       "video_url": "",
       "url": "#",
-      "featured": true
+      "featured": true,
+      "published": true
     },
     {
       "title": "エミナルクリニック｜ブランドメッセージ",
@@ -84,7 +89,8 @@
       "description": "女性向けに医療脱毛サービスを提供する、エミナルクリニックのブランドメッセージを開発しました。\n開発に当たっては、経営陣や実際にクリニックで働くドクターにヒアリングを実施し、エミナルクリニックの価値や独自性を抽出。最終的にクリニック名と連動するメッセージとしました。",
       "video_url": "",
       "url": "#",
-      "featured": true
+      "featured": true,
+      "published": true
     },
     {
       "featured": true,
@@ -96,7 +102,8 @@
         "キャッチコピー",
         "ライティング",
         "ネーミング"
-      ]
+      ],
+      "published": true
     }
   ]
 }
