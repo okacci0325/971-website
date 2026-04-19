@@ -423,6 +423,11 @@
     .profile-bio { font-size: 14px; color: #444; line-height: 2.1; margin-bottom: 20px; }
     .profile-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 28px; }
     .profile-tag { font-family: var(--serif); font-size: 13px; color: var(--gray); background: var(--white); padding: 4px 12px; border: 1px solid var(--gray-lt); }
+    .profile-left { display: flex; flex-direction: column; gap: 20px; }
+    .profile-photo-sns { display: flex; gap: 18px; justify-content: center; padding-top: 4px; }
+    .profile-photo-sns a { color: var(--gray); transition: color 0.2s; display: flex; }
+    .profile-photo-sns a:hover { color: var(--black); }
+    .profile-photo-sns svg { width: 18px; height: 18px; }
 
     /* ══ NEWS ═══════════════════════════════ */
     #news { background: var(--white); }
@@ -492,18 +497,18 @@
     .form-submit:hover { background: #0d2860; }
 
     /* ══ FOOTER ═════════════════════════════ */
+    .footer-wave { display: block; line-height: 0; margin-bottom: -2px; }
+    .footer-wave svg { display: block; width: 100%; height: 80px; }
     footer {
       background: var(--black);
-      padding: 48px 60px;
+      padding: 40px 60px 48px;
       display: flex;
-      justify-content: space-between;
+      flex-direction: column;
       align-items: center;
+      gap: 16px;
+      text-align: center;
     }
     .footer-logo img { height: 52px; width: auto; }
-    .footer-right { display: flex; flex-direction: column; align-items: flex-end; gap: 16px; }
-    .footer-sns { display: flex; gap: 20px; }
-    .footer-sns a { font-family: var(--sans); font-size: 11px; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255,255,255,0.45); text-decoration: none; transition: color 0.2s; }
-    .footer-sns a:hover { color: var(--white); }
     .footer-copy { font-family: var(--sans); font-size: 11px; color: rgba(255,255,255,0.2); letter-spacing: 0.08em; }
 
     /* ══ DECORATIONS ════════════════════════ */
@@ -864,9 +869,8 @@
       .form-submit { width: 100%; padding: 16px; }
 
       /* --- FOOTER --- */
-      footer { flex-direction: column; align-items: flex-start; gap: 24px; padding: 40px 24px; }
-      .footer-right { align-items: flex-start; }
-      .footer-sns { flex-wrap: wrap; gap: 16px; }
+      footer { padding: 32px 24px 40px; gap: 12px; }
+      .footer-wave svg { height: 50px; }
       .footer-logo img { height: 40px; }
 
       /* --- MODAL --- */
@@ -926,7 +930,7 @@
             <span>変</span><span class="k">言</span><span>自在</span>
           </p>
         </div>
-        <div class="hero-subcopy-inner">変わるための言葉と伴走</div>
+        <div class="hero-subcopy-inner">変わるための言葉・戦略・伴走</div>
       </div>
       <div class="hero-marquee-wrap" id="marqueeWrap">
         <!-- JS で content/settings.json から動的に挿入 -->
@@ -994,11 +998,27 @@
     <div class="about-profile">
       <div class="sec-label" style="margin-bottom:36px;">Profile</div>
       <div class="profile-grid">
-        <div class="profile-photo">
-          <div class="smk ps1" aria-hidden="true"><svg viewBox="0 0 200 130" xmlns="http://www.w3.org/2000/svg"><ellipse cx="42" cy="84" rx="36" ry="28"/><ellipse cx="84" cy="62" rx="44" ry="34"/><ellipse cx="130" cy="78" rx="36" ry="28"/><ellipse cx="66" cy="44" rx="28" ry="23"/><ellipse cx="108" cy="36" rx="34" ry="27"/><ellipse cx="155" cy="58" rx="26" ry="21"/></svg></div>
-          <div class="smk ps2" aria-hidden="true"><svg viewBox="0 0 70 50" xmlns="http://www.w3.org/2000/svg"><ellipse cx="18" cy="34" rx="14" ry="11"/><ellipse cx="36" cy="24" rx="18" ry="14"/><ellipse cx="54" cy="32" rx="13" ry="10"/><ellipse cx="28" cy="13" rx="11" ry="9"/></svg></div>
-          <img class="photo-normal" src="images/017_260207_PROFILE%201.jpg" alt="岡澤修平" />
-          <img class="photo-hover"  src="images/007_260207_PROFILE%201.jpg" alt="岡澤修平" />
+        <div class="profile-left">
+          <div class="profile-photo">
+            <div class="smk ps1" aria-hidden="true"><svg viewBox="0 0 200 130" xmlns="http://www.w3.org/2000/svg"><ellipse cx="42" cy="84" rx="36" ry="28"/><ellipse cx="84" cy="62" rx="44" ry="34"/><ellipse cx="130" cy="78" rx="36" ry="28"/><ellipse cx="66" cy="44" rx="28" ry="23"/><ellipse cx="108" cy="36" rx="34" ry="27"/><ellipse cx="155" cy="58" rx="26" ry="21"/></svg></div>
+            <div class="smk ps2" aria-hidden="true"><svg viewBox="0 0 70 50" xmlns="http://www.w3.org/2000/svg"><ellipse cx="18" cy="34" rx="14" ry="11"/><ellipse cx="36" cy="24" rx="18" ry="14"/><ellipse cx="54" cy="32" rx="13" ry="10"/><ellipse cx="28" cy="13" rx="11" ry="9"/></svg></div>
+            <img class="photo-normal" src="images/017_260207_PROFILE%201.jpg" alt="岡澤修平" />
+            <img class="photo-hover"  src="images/007_260207_PROFILE%201.jpg" alt="岡澤修平" />
+          </div>
+          <div class="profile-photo-sns">
+            <a href="https://x.com/okacci0325" target="_blank" aria-label="X / Twitter">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            </a>
+            <a href="https://www.instagram.com/okacci_971/" target="_blank" aria-label="Instagram">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+            </a>
+            <a href="https://note.com/okacci222" target="_blank" aria-label="note">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M4 4h3.5L16 15.5V4h3v16h-3.5L7 8.5V20H4V4z"/></svg>
+            </a>
+            <a href="https://www.facebook.com/shuhei.okazawa" target="_blank" aria-label="Facebook">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+            </a>
+          </div>
         </div>
         <div>
           <p class="profile-name">岡澤 修平</p>
@@ -1079,17 +1099,14 @@
   </div>
 
   <!-- ══ FOOTER ══ -->
+  <div class="footer-wave">
+    <svg viewBox="0 0 1200 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,80 L0,68 A286,286 0 0,0 150,68 A165,165 0 0,0 300,68 A114,114 0 0,0 450,68 A90,90 0 0,0 600,68 A90,90 0 0,0 750,68 A114,114 0 0,0 900,68 A165,165 0 0,0 1050,68 A286,286 0 0,0 1200,68 L1200,80 Z" fill="#181818"/>
+    </svg>
+  </div>
   <footer>
     <div class="footer-logo"><img src="images/logo_white.png" alt="971" /></div>
-    <div class="footer-right">
-      <div class="footer-sns">
-        <a href="https://x.com/okacci0325" target="_blank">X / Twitter</a>
-        <a href="https://www.instagram.com/okacci_971/" target="_blank">Instagram</a>
-        <a href="https://note.com/okacci222" target="_blank">note</a>
-        <a href="https://www.facebook.com/shuhei.okazawa" target="_blank">Facebook</a>
-      </div>
-      <p class="footer-copy">© 2025 971 / Shuhei Okazawa. All rights reserved.</p>
-    </div>
+    <p class="footer-copy">© 2026 971 / Shuhei Okazawa. All rights reserved.</p>
   </footer>
 
   <script>
@@ -1230,7 +1247,7 @@
         const data = await res.json();
         worksData  = data.items || [];
         const grid = document.getElementById('worksGrid');
-        const INITIAL = 4;
+        const INITIAL = 6;
 
         // published が false のアイテムを除外（未設定は表示）
         const visibleItems = worksData
