@@ -939,7 +939,7 @@
   </section>
 
   <!-- ══ WORKS ══ -->
-  <section id="works" class="sec" style="display:none">
+  <section id="works" class="sec">
     <div class="works-header">
       <div class="sec-label">Works</div>
     </div>
@@ -1293,6 +1293,13 @@
       try {
         const res  = await fetch('/content/settings.json');
         const data = await res.json();
+
+        // Works セクションの表示制御
+        const worksSection = document.getElementById('works');
+        if (worksSection) {
+          worksSection.style.display = data.show_works === false ? 'none' : '';
+        }
+
         const wrap = document.getElementById('marqueeWrap');
         const rows = [data.marquee1, data.marquee2, data.marquee3];
 
