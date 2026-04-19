@@ -187,6 +187,8 @@
     .mq-track {
       display: flex;
       white-space: nowrap;
+      width: max-content;
+      will-change: transform;
       animation: mq-left 38s linear infinite;
     }
     .mq-row:nth-child(2) .mq-track { animation: mq-right 32s linear infinite; }
@@ -210,17 +212,18 @@
     @keyframes mq-left  { from { transform: translateX(0); }    to { transform: translateX(-50%); } }
     @keyframes mq-right { from { transform: translateX(-50%); } to { transform: translateX(0); } }
 
-    /* サブコピー */
-    .hero-subcopy {
-      text-align: center;
-      padding: 20px 24px;
-      border-top: 1px solid rgba(255,255,255,0.1);
+    /* サブコピー（内側） */
+    .hero-subcopy-inner {
       font-family: var(--serif);
-      font-size: clamp(16px, 2vw, 22px);
+      font-size: clamp(13px, 1.4vw, 17px);
       font-weight: 400;
-      color: rgba(255,255,255,0.7);
-      letter-spacing: 0.2em;
+      letter-spacing: 0.25em;
+      color: rgba(255,255,255,0.65);
+      margin-top: 20px;
     }
+
+    /* サブコピー（下帯）- 移動済みのため非表示 */
+    .hero-subcopy { display: none; }
 
     /* ══ SECTION COMMON ═════════════════════ */
     .sec { padding: 100px 60px; }
@@ -249,7 +252,7 @@
     }
     .works-grid {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: repeat(3, 1fr);
       gap: 2px;
       background: var(--gray-lt);
     }
@@ -922,14 +925,13 @@
           <p class="hero-tagline">
             <span>変</span><span class="k">言</span><span>自在</span>
           </p>
-          <p class="hero-reading">へんげんじざい</p>
         </div>
+        <div class="hero-subcopy-inner">変わるための言葉と伴走</div>
       </div>
       <div class="hero-marquee-wrap" id="marqueeWrap">
         <!-- JS で content/settings.json から動的に挿入 -->
       </div>
     </div>
-    <div class="hero-subcopy">変わるための言葉と伴走</div>
     <div class="scroll-hint">
       <div class="scroll-line"></div>
       <span>Scroll</span>
@@ -1081,10 +1083,10 @@
     <div class="footer-logo"><img src="images/logo_white.png" alt="971" /></div>
     <div class="footer-right">
       <div class="footer-sns">
-        <a href="#" target="_blank">X / Twitter</a>
-        <a href="#" target="_blank">Instagram</a>
-        <a href="#" target="_blank">note</a>
-        <a href="#" target="_blank">Facebook</a>
+        <a href="https://x.com/okacci0325" target="_blank">X / Twitter</a>
+        <a href="https://www.instagram.com/okacci_971/" target="_blank">Instagram</a>
+        <a href="https://note.com/okacci222" target="_blank">note</a>
+        <a href="https://www.facebook.com/shuhei.okazawa" target="_blank">Facebook</a>
       </div>
       <p class="footer-copy">© 2025 971 / Shuhei Okazawa. All rights reserved.</p>
     </div>
