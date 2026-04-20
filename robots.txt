@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://97171.jp/sitemap.xml
