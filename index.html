@@ -9,6 +9,23 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@400;500;700;800&family=Noto+Serif+JP:wght@300;400;500;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <style>
+    /* ── LOADER ── */
+    #loader {
+      position: fixed; inset: 0; z-index: 9999;
+      background: var(--navy);
+      display: flex; align-items: center; justify-content: center;
+      transition: opacity 0.7s ease;
+    }
+    #loader.out { opacity: 0; pointer-events: none; }
+    .loader-logo-wrap { position: relative; width: 180px; }
+    .loader-logo-dim { width: 100%; opacity: 0.12; display: block; }
+    .loader-logo-bright {
+      position: absolute; inset: 0; width: 100%;
+      clip-path: inset(100% 0 0 0);
+      animation: loader-fill 1.4s cubic-bezier(0.4,0,0.2,1) forwards 0.3s;
+    }
+    @keyframes loader-fill { to { clip-path: inset(0% 0 0 0); } }
+
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
       --navy:      #0B1F48;
@@ -114,13 +131,16 @@
     /* 縦組み：左カラム */
     .hero-vertical {
       display: flex;
-      flex-direction: column;
+      flex-direction: row;
       align-items: center;
-      justify-content: center;
-      gap: 20px;
-      padding: 60px 28px 20px;
+      gap: 28px;
+      padding: 60px 40px 20px;
       border-right: 1px solid rgba(255,255,255,0.1);
       flex-shrink: 0;
+    }
+    .hero-vdivider {
+      width: 1px; height: 70px; flex-shrink: 0;
+      background: rgba(255,255,255,0.15);
     }
     .hero-logo { height: 110px; width: auto; }
     .hero-tagline-block {
@@ -208,18 +228,17 @@
       color: rgba(255,255,255,0.12);
       font-size: 0.65em;
     }
-    .hero-marquee-wrap:hover .mq-track { animation-play-state: paused; }
     @keyframes mq-left  { from { transform: translateX(0); }    to { transform: translateX(-50%); } }
     @keyframes mq-right { from { transform: translateX(-50%); } to { transform: translateX(0); } }
 
     /* サブコピー（内側） */
     .hero-subcopy-inner {
+      writing-mode: vertical-rl;
       font-family: var(--serif);
-      font-size: clamp(13px, 1.4vw, 17px);
+      font-size: clamp(11px, 1.1vw, 14px);
       font-weight: 400;
       letter-spacing: 0.25em;
       color: rgba(255,255,255,0.65);
-      margin-top: 20px;
     }
 
     /* サブコピー（下帯）- 移動済みのため非表示 */
@@ -507,7 +526,7 @@
       justify-content: center;
       position: relative;
     }
-    .footer-logo img { height: 68px; width: auto; }
+    .footer-logo img { height: 96px; width: auto; }
     .footer-copy { font-family: var(--sans); font-size: 11px; color: rgba(255,255,255,0.2); letter-spacing: 0.08em; position: absolute; right: 60px; bottom: 22px; }
 
     /* ══ DECORATIONS ════════════════════════ */
@@ -783,6 +802,33 @@
     .modal-link:hover { background: #0d2860; }
     .modal-link.hidden { display: none; }
 
+    /* ── Cursor trail ── */
+    .cursor-trail {
+      position: fixed;
+      width: 5px; height: 5px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.55);
+      pointer-events: none;
+      transform: translate(-50%,-50%);
+      z-index: 9998;
+      animation: trail-fade 0.55s ease-out forwards;
+    }
+    @keyframes trail-fade {
+      0%   { opacity: 0.65; transform: translate(-50%,-50%) scale(1); }
+      100% { opacity: 0;    transform: translate(-50%,-50%) scale(0.15); }
+    }
+
+    /* ── Fade-in ── */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity 0.75s ease, transform 0.75s ease;
+    }
+    .fade-in.visible {
+      opacity: 1;
+      transform: none;
+    }
+
     /* ══ MOBILE ════════════════════════════════ */
     @media (max-width: 767px) {
 
@@ -870,7 +916,7 @@
       /* --- FOOTER --- */
       footer { padding: 36px 24px 52px; }
       .footer-wave svg { height: 70px; }
-      .footer-logo img { height: 48px; }
+      .footer-logo img { height: 60px; }
       .footer-copy { right: 24px; bottom: 18px; }
 
       /* --- MODAL --- */
@@ -883,6 +929,14 @@
   </style>
 </head>
 <body>
+
+  <!-- ローダー -->
+  <div id="loader">
+    <div class="loader-logo-wrap">
+      <img src="images/logo_white.png" class="loader-logo-dim" alt="" aria-hidden="true" />
+      <img src="images/logo_white.png" class="loader-logo-bright" alt="971" />
+    </div>
+  </div>
 
   <!-- ハンバーガー -->
   <button class="hamburger" id="hbg" aria-label="メニュー">
@@ -925,12 +979,12 @@
     <div class="hero-main">
       <div class="hero-vertical">
         <img class="hero-logo" src="images/logo_white.png" alt="971" />
-        <div class="hero-tagline-block">
-          <p class="hero-tagline">
-            <span>変</span><span class="k">言</span><span>自在</span>
-          </p>
-        </div>
-        <div class="hero-subcopy-inner">変わるための言葉・戦略・伴走</div>
+        <div class="hero-vdivider"></div>
+        <p class="hero-tagline">
+          <span>変</span><span class="k">言</span><span>自在</span>
+        </p>
+        <div class="hero-vdivider"></div>
+        <p class="hero-subcopy-inner">変わるための言葉・戦略・伴走</p>
       </div>
       <div class="hero-marquee-wrap" id="marqueeWrap">
         <!-- JS で content/settings.json から動的に挿入 -->
@@ -945,7 +999,7 @@
   <!-- ══ WORKS ══ -->
   <section id="works" class="sec">
     <div class="works-header">
-      <div class="sec-label">Works</div>
+      <div class="sec-label fade-in">Works</div>
     </div>
     <div class="smk ws1" aria-hidden="true"><svg viewBox="0 0 280 90" xmlns="http://www.w3.org/2000/svg"><ellipse cx="24" cy="62" rx="20" ry="15"/><ellipse cx="62" cy="46" rx="34" ry="23"/><ellipse cx="112" cy="56" rx="28" ry="19"/><ellipse cx="162" cy="42" rx="36" ry="25"/><ellipse cx="216" cy="52" rx="30" ry="20"/><ellipse cx="258" cy="60" rx="22" ry="16"/><ellipse cx="88" cy="28" rx="20" ry="15"/><ellipse cx="140" cy="22" rx="26" ry="18"/><ellipse cx="192" cy="26" rx="22" ry="16"/></svg></div>
     <div class="smk ws2" aria-hidden="true"><svg viewBox="0 0 90 60" xmlns="http://www.w3.org/2000/svg"><ellipse cx="22" cy="40" rx="18" ry="14"/><ellipse cx="46" cy="28" rx="24" ry="19"/><ellipse cx="70" cy="38" rx="17" ry="13"/><ellipse cx="34" cy="16" rx="14" ry="11"/><ellipse cx="58" cy="13" rx="16" ry="12"/></svg></div>
@@ -967,11 +1021,11 @@
       <div class="smk ms3" aria-hidden="true"><svg viewBox="0 0 320 80" xmlns="http://www.w3.org/2000/svg"><ellipse cx="28" cy="54" rx="24" ry="17"/><ellipse cx="70" cy="40" rx="36" ry="24"/><ellipse cx="122" cy="48" rx="30" ry="21"/><ellipse cx="172" cy="36" rx="38" ry="26"/><ellipse cx="228" cy="46" rx="32" ry="21"/><ellipse cx="280" cy="52" rx="26" ry="18"/><ellipse cx="96" cy="26" rx="22" ry="16"/><ellipse cx="152" cy="20" rx="28" ry="19"/><ellipse cx="206" cy="24" rx="24" ry="17"/></svg></div>
       <div class="mission-label">Mission</div>
       <div class="mission-layout">
-        <h2 class="mission-heading">言葉の力で、<br>苦をなくし、<br>楽をふやす。</h2>
+        <h2 class="mission-heading fade-in">言葉の力で、<br>苦をなくし、<br>楽をふやす。</h2>
         <div class="mission-body">
-          <p>「971」という屋号は、忍者道具の「苦無（クナイ）」に由来します。忍者にまつわる名前を選んだ理由は2つあります。1つは、私自身が忍者の里・三重県伊賀市の出身であり、忍者の文化や思想を未来に伝えるお手伝いをしたい、と考えているから。そしてもう1つは「忍者とコピーライターって似ているな」という気づきを得たからです。</p>
-          <p>かつて忍者は全国から情報を集め、それを主君の繁栄のために活用してきました。コピーライターの仕事も、クライアントの課題や社会のトレンドなど、さまざまな情報をベースにコミュニケーションを設計し、事業の発展に貢献することが使命です。</p>
-          <p>忍者のようにクライアントを影から支え、深く刺さる言葉で、変幻自在な提案で、人や社会が抱える課題に立ち向かっていく。そして、世の中から不当な「苦しい」を無くし、「楽しい」をつくっていきます。</p>
+          <p class="fade-in">「971」という屋号は、忍者道具の「苦無（クナイ）」に由来します。忍者にまつわる名前を選んだ理由は2つあります。1つは、私自身が忍者の里・三重県伊賀市の出身であり、忍者の文化や思想を未来に伝えるお手伝いをしたい、と考えているから。そしてもう1つは「忍者とコピーライターって似ているな」という気づきを得たからです。</p>
+          <p class="fade-in">かつて忍者は全国から情報を集め、それを主君の繁栄のために活用してきました。コピーライターの仕事も、クライアントの課題や社会のトレンドなど、さまざまな情報をベースにコミュニケーションを設計し、事業の発展に貢献することが使命です。</p>
+          <p class="fade-in">忍者のようにクライアントを影から支え、深く刺さる言葉で、変幻自在な提案で、人や社会が抱える課題に立ち向かっていく。そして、世の中から不当な「苦しい」を無くし、「楽しい」をつくっていきます。</p>
         </div>
       </div>
     </div>
@@ -981,22 +1035,22 @@
       <div class="smk svs1" aria-hidden="true"><svg viewBox="0 0 130 200" xmlns="http://www.w3.org/2000/svg"><ellipse cx="65" cy="160" rx="34" ry="24"/><ellipse cx="55" cy="126" rx="38" ry="29"/><ellipse cx="68" cy="94" rx="32" ry="26"/><ellipse cx="56" cy="64" rx="26" ry="21"/><ellipse cx="66" cy="38" rx="22" ry="18"/><ellipse cx="60" cy="16" rx="14" ry="12"/></svg></div>
       <div class="smk svs2" aria-hidden="true"><svg viewBox="0 0 70 50" xmlns="http://www.w3.org/2000/svg"><ellipse cx="18" cy="34" rx="14" ry="11"/><ellipse cx="36" cy="24" rx="18" ry="14"/><ellipse cx="54" cy="32" rx="13" ry="10"/><ellipse cx="28" cy="13" rx="11" ry="9"/></svg></div>
       <div class="smk svs3" aria-hidden="true"><svg viewBox="0 0 200 130" xmlns="http://www.w3.org/2000/svg"><ellipse cx="42" cy="84" rx="36" ry="28"/><ellipse cx="84" cy="62" rx="44" ry="34"/><ellipse cx="130" cy="78" rx="36" ry="28"/><ellipse cx="66" cy="44" rx="28" ry="23"/><ellipse cx="108" cy="36" rx="34" ry="27"/><ellipse cx="155" cy="58" rx="26" ry="21"/></svg></div>
-      <div class="sec-label" style="margin-bottom:36px;">Service</div>
+      <div class="sec-label fade-in" style="margin-bottom:36px;">Service</div>
       <div class="service-grid">
-        <div class="service-item"><span class="service-num">01</span><div><p class="service-text">言語化支援</p><p class="service-sub">コンセプト・キャッチコピー・ネーミング開発、企業理念策定 等</p></div></div>
-        <div class="service-item"><span class="service-num">02</span><div><p class="service-text">ブランディング支援</p><p class="service-sub">ブランドアイデンティティ設計、クリエイティブディレクション 等</p></div></div>
-        <div class="service-item"><span class="service-num">03</span><div><p class="service-text">プロモーション支援</p><p class="service-sub">広告・パンフレット・Webサイト・イベント・動画・PR・SNSコンテンツ等の企画・制作・運用</p></div></div>
-        <div class="service-item"><span class="service-num">04</span><div><p class="service-text">取材記事制作</p></div></div>
-        <div class="service-item"><span class="service-num">05</span><div><p class="service-text">コピーライティングに関するセミナー</p></div></div>
-        <div class="service-item"><span class="service-num">06</span><div><p class="service-text">アナログゲーム制作</p></div></div>
-        <div class="service-item"><span class="service-num">07</span><div><p class="service-text">事業構想支援</p></div></div>
-        <div class="service-item"><span class="service-num">08</span><div><p class="service-text">忍者に関する啓蒙活動</p></div></div>
+        <div class="service-item fade-in"><span class="service-num">01</span><div><p class="service-text">言語化支援</p><p class="service-sub">コンセプト・キャッチコピー・ネーミング開発、企業理念策定 等</p></div></div>
+        <div class="service-item fade-in"><span class="service-num">02</span><div><p class="service-text">ブランディング支援</p><p class="service-sub">ブランドアイデンティティ設計、クリエイティブディレクション 等</p></div></div>
+        <div class="service-item fade-in"><span class="service-num">03</span><div><p class="service-text">プロモーション支援</p><p class="service-sub">広告・パンフレット・Webサイト・イベント・動画・PR・SNSコンテンツ等の企画・制作・運用</p></div></div>
+        <div class="service-item fade-in"><span class="service-num">04</span><div><p class="service-text">取材記事制作</p></div></div>
+        <div class="service-item fade-in"><span class="service-num">05</span><div><p class="service-text">コピーライティングに関するセミナー</p></div></div>
+        <div class="service-item fade-in"><span class="service-num">06</span><div><p class="service-text">アナログゲーム制作</p></div></div>
+        <div class="service-item fade-in"><span class="service-num">07</span><div><p class="service-text">事業構想支援</p></div></div>
+        <div class="service-item fade-in"><span class="service-num">08</span><div><p class="service-text">忍者に関する啓蒙活動</p></div></div>
       </div>
     </div>
 
     <!-- Profile -->
     <div class="about-profile">
-      <div class="sec-label" style="margin-bottom:36px;">Profile</div>
+      <div class="sec-label fade-in" style="margin-bottom:36px;">Profile</div>
       <div class="profile-grid">
         <div class="profile-left">
           <div class="profile-photo">
@@ -1021,15 +1075,15 @@
           </div>
         </div>
         <div>
-          <p class="profile-name">岡澤 修平</p>
-          <p class="profile-name-en">Shuhei Okazawa</p>
-          <p class="profile-roles">コピーライター／クリエイティブディレクター／事業構想士／忍者</p>
-          <p class="profile-bio">三重県伊賀市出身。大阪芸術大学芸術学部文芸学科卒業、事業構想大学院大学修士課程修了。</p>
-          <p class="profile-bio">広告制作会社、広告代理店等で10年以上コピーライターとして勤務。2020年独立。</p>
-          <p class="profile-bio">「向き合うこと」を大切に、人や企業の想いを言語化し、進化するための力に変えてきました。また、言葉を軸としたコミュニケーション設計やクリエイティブディレクションも得意としています。</p>
-          <p class="profile-bio">忍者の里・三重県伊賀市の出身者として、忍者の研究や事業構想にも取り組んでいます。</p>
-          <p class="profile-bio">第51回日経MJ広告賞「大賞」、第27回京都広告賞「京都商工会議所会頭賞」受賞。</p>
-          <p class="profile-bio">趣味はお酒、サウナ、旅行、読書、ボードゲーム、ピックルボールなど。</p>
+          <p class="profile-name fade-in">岡澤 修平</p>
+          <p class="profile-name-en fade-in">Shuhei Okazawa</p>
+          <p class="profile-roles fade-in">コピーライター／クリエイティブディレクター／事業構想士／忍者</p>
+          <p class="profile-bio fade-in">三重県伊賀市出身。大阪芸術大学芸術学部文芸学科卒業、事業構想大学院大学修士課程修了。</p>
+          <p class="profile-bio fade-in">広告制作会社、広告代理店等で10年以上コピーライターとして勤務。2020年独立。</p>
+          <p class="profile-bio fade-in">「向き合うこと」を大切に、人や企業の想いを言語化し、進化するための力に変えてきました。また、言葉を軸としたコミュニケーション設計やクリエイティブディレクションも得意としています。</p>
+          <p class="profile-bio fade-in">忍者の里・三重県伊賀市の出身者として、忍者の研究や事業構想にも取り組んでいます。</p>
+          <p class="profile-bio fade-in">第51回日経MJ広告賞「大賞」、第27回京都広告賞「京都商工会議所会頭賞」受賞。</p>
+          <p class="profile-bio fade-in">趣味はお酒、サウナ、旅行、読書、ボードゲーム、ピックルボールなど。</p>
         </div>
       </div>
     </div>
@@ -1038,7 +1092,7 @@
   <!-- ══ NEWS ══ -->
   <section id="news" class="sec">
     <div class="smk ns1" aria-hidden="true"><svg viewBox="0 0 130 200" xmlns="http://www.w3.org/2000/svg"><ellipse cx="65" cy="160" rx="34" ry="24"/><ellipse cx="55" cy="126" rx="38" ry="29"/><ellipse cx="68" cy="94" rx="32" ry="26"/><ellipse cx="56" cy="64" rx="26" ry="21"/><ellipse cx="66" cy="38" rx="22" ry="18"/><ellipse cx="60" cy="16" rx="14" ry="12"/></svg></div>
-    <div class="sec-label" style="margin-bottom:32px;">News</div>
+    <div class="sec-label fade-in" style="margin-bottom:32px;">News</div>
     <div class="news-list" id="newsList">
       <!-- JS で content/news.json から動的に挿入 -->
     </div>
@@ -1048,8 +1102,8 @@
   <section id="contact" class="sec">
     <div class="smk cs1" aria-hidden="true"><svg viewBox="0 0 280 90" xmlns="http://www.w3.org/2000/svg"><ellipse cx="24" cy="62" rx="20" ry="15"/><ellipse cx="62" cy="46" rx="34" ry="23"/><ellipse cx="112" cy="56" rx="28" ry="19"/><ellipse cx="162" cy="42" rx="36" ry="25"/><ellipse cx="216" cy="52" rx="30" ry="20"/><ellipse cx="258" cy="60" rx="22" ry="16"/><ellipse cx="88" cy="28" rx="20" ry="15"/><ellipse cx="140" cy="22" rx="26" ry="18"/><ellipse cx="192" cy="26" rx="22" ry="16"/></svg></div>
     <div class="smk cs2" aria-hidden="true"><svg viewBox="0 0 70 50" xmlns="http://www.w3.org/2000/svg"><ellipse cx="18" cy="34" rx="14" ry="11"/><ellipse cx="36" cy="24" rx="18" ry="14"/><ellipse cx="54" cy="32" rx="13" ry="10"/><ellipse cx="28" cy="13" rx="11" ry="9"/></svg></div>
-    <div class="contact-inner">
-      <div class="sec-label" style="margin-bottom:32px;">Contact</div>
+    <div class="contact-inner fade-in">
+      <div class="sec-label fade-in" style="margin-bottom:32px;">Contact</div>
       <p class="contact-lead">お仕事のご依頼・ご相談はお気軽にご連絡ください。<br>通常2〜3営業日以内にご返信いたします。</p>
       <form method="POST" action="https://formspree.io/f/mjgjwdro">
         <input type="hidden" name="_next" value="/thanks.html" />
@@ -1105,11 +1159,40 @@
     </svg>
   </div>
   <footer>
-    <div class="footer-logo"><img src="images/logo_white.png" alt="971" /></div>
-    <p class="footer-copy">© 2026 971 / Shuhei Okazawa. All rights reserved.</p>
+    <div class="footer-logo fade-in"><img src="images/logo_white.png" alt="971" /></div>
+    <p class="footer-copy fade-in">© 2026 971 / Shuhei Okazawa. All rights reserved.</p>
   </footer>
 
   <script>
+    /* ── Loader ── */
+    (function() {
+      const loader = document.getElementById('loader');
+      function hideLoader() {
+        loader.classList.add('out');
+        setTimeout(() => loader.style.display = 'none', 700);
+      }
+      if (document.readyState === 'complete') {
+        setTimeout(hideLoader, 1900);
+      } else {
+        window.addEventListener('load', () => setTimeout(hideLoader, 1900));
+      }
+    })();
+
+    /* ── Cursor trail ── */
+    (function() {
+      let last = 0;
+      document.addEventListener('mousemove', e => {
+        const now = Date.now();
+        if (now - last < 35) return;
+        last = now;
+        const d = document.createElement('div');
+        d.className = 'cursor-trail';
+        d.style.cssText = 'left:' + e.clientX + 'px;top:' + e.clientY + 'px';
+        document.body.appendChild(d);
+        setTimeout(() => d.remove(), 560);
+      });
+    })();
+
     /* ── ハンバーガー ── */
     const hbg    = document.getElementById('hbg');
     const drawer = document.getElementById('drawer');
@@ -1255,7 +1338,7 @@
           .filter(item => item.published !== false);
 
         grid.innerHTML = visibleItems.map((item, i) => `
-          <button class="work-card${i >= INITIAL ? ' hidden' : ''}" data-idx="${item._origIdx}">
+          <button class="work-card fade-in${i >= INITIAL ? ' hidden' : ''}" data-idx="${item._origIdx}">
             <div class="work-img">
               ${item.image
                 ? `<img src="${item.image}" alt="${item.title}" loading="lazy" />`
@@ -1275,6 +1358,10 @@
           card.addEventListener('click', () => openModal(+card.dataset.idx));
         });
 
+        setTimeout(() => {
+          grid.querySelectorAll('.fade-in').forEach(el => fadeObs.observe(el));
+        }, 50);
+
         if (visibleItems.length > INITIAL) moreBtn.classList.remove('hidden');
       } catch (e) {
         console.error('Works load error:', e);
@@ -1290,7 +1377,7 @@
         const list  = document.getElementById('newsList');
 
         list.innerHTML = items.map(item => `
-          <div class="news-item">
+          <div class="news-item fade-in">
             <button class="news-trigger" onclick="toggleNews(this)">
               <span class="news-date">${item.date}</span>
               <span class="news-cat">${item.category}</span>
@@ -1305,6 +1392,8 @@
             </div>
           </div>
         `).join('');
+
+        list.querySelectorAll('.fade-in').forEach(el => fadeObs.observe(el));
       } catch (e) {
         console.error('News load error:', e);
       }
@@ -1334,6 +1423,14 @@
         console.error('Marquee load error:', e);
       }
     }
+
+    /* ── Fade-in on scroll ── */
+    const fadeObs = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('visible'); fadeObs.unobserve(e.target); }
+      });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.fade-in').forEach(el => fadeObs.observe(el));
 
     /* ── 初期化 ── */
     document.addEventListener('DOMContentLoaded', () => {
