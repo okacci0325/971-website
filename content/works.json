@@ -20,7 +20,7 @@
     {
       "video_url": "",
       "featured": true,
-      "published": false,
+      "published": true,
       "url": "https://frictio.ai/",
       "title": "Frictio｜ブランドサイト",
       "images": [],
@@ -104,6 +104,22 @@
         "ネーミング"
       ],
       "published": true
+    },
+    {
+      "video_url": "youtube.com/watch?v=vKqtrT8bKc0&time_continue=13&source_ve_path=NzY3NTg&embeds_referring_euri=https%3A%2F%2Fwww.bcl-company.jp%2F",
+      "featured": false,
+      "published": true,
+      "url": "https://www.bcl-company.jp/",
+      "title": "BCLカンパニー ｜ 理念策定",
+      "images": [
+        "/images/uploads/copy.jpg"
+      ],
+      "image": "/images/uploads/理念.jpg",
+      "categories": [
+        "理念策定",
+        "ナレーション制作"
+      ],
+      "description": "多様なコスメティック商品を開発しているBCLカンパニーの、企業理念および理念浸透用のムービー制作をお手伝いしました。\n社内ワークショップから抽出された社員の大切にしている価値観を、化粧品会社らしさを想起させる「塗り替える」「彩る」などの表現に落とし込んでいきました。"
     }
   ]
 }
