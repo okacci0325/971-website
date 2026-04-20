@@ -35,19 +35,6 @@
       "video_url": "",
       "featured": true,
       "published": true,
-      "url": "#",
-      "title": "ニチバン｜新聞広告",
-      "images": [],
-      "image": "/images/uploads/セロテープ.jpg",
-      "categories": [
-        "キャッチコピー"
-      ],
-      "description": "ニチバンのSDGs達成に向けたチャレンジ「Small Action For the Life」を伝える広告のコピーライティングを担当。セロテープが持つファクトを大胆かつ丁寧に伝えることを目指しました。第51回 日経MJ広告賞にて大賞を受賞。\n"
-    },
-    {
-      "video_url": "",
-      "featured": true,
-      "published": true,
       "url": "https://www.primarytouch.co.jp/",
       "title": "PrimaryTouch｜ブランディング",
       "images": [
@@ -65,32 +52,17 @@
       "description": "AIとデータを活用して地域医療の課題解決に挑むPrimaryTouchのブランディングを担当。「診療は、新領域へ。」というコンセプトを軸に、医療EXPOで活用するパンフレットと動画を制作しました。\n一般的に想起される医療イメージとは一線を画するデザイン表現によって、新しい領域へ踏み出していく姿勢を視覚的に感じさせます。"
     },
     {
-      "video_url": "",
       "featured": true,
       "published": true,
-      "url": "#",
-      "title": "ELIZABETH｜キービジュアル",
-      "images": [],
-      "image": "/images/uploads/03150909_64110caa9871f.jpg",
-      "categories": [
-        "キャッチコピー"
-      ],
-      "description": "唇の色・ツヤ・うるおいを守るティント「RIP GUARDIAN」のキャッチコピーを開発しました。\n「GUARDIAN＝守護神」という商品名を活かすため、「神」というフレーズを活用して印象的な表現をめざしました。\n"
-    },
-    {
-      "video_url": "",
-      "featured": true,
-      "published": true,
-      "url": "#",
-      "title": "エミナルクリニック｜ブランドメッセージ",
-      "images": [],
-      "image": "/images/uploads/スクリーンショット-2024-04-24-15.21.18.png",
-      "categories": [
-        "ブランディング",
-        "コンセプトワーク",
-        "キャッチコピー"
-      ],
-      "description": "女性向けに医療脱毛サービスを提供する、エミナルクリニックのブランドメッセージを開発しました。\n開発に当たっては、経営陣や実際にクリニックで働くドクターにヒアリングを実施し、エミナルクリニックの価値や独自性を抽出。最終的にクリニック名と連動するメッセージとしました。"
+      "title": "拓殖大学 ｜ 特設サイト",
+      "image": "/images/uploads/スクリーンショット-2026-04-20-11.27.31.png",
+      "description": "拓殖大学の特設サイト「コトバで拓け、キミの世界。」、\n呂布カルマさんと学生4名の対談記事の制作を担当しました。\n唯一無二の言語感覚を持つ呂布氏との対話を通じ、学生が自身の人生観や野心、葛藤を「言語化」するプロセスを追った自己再発見ドキュメンタリー。\n苦悩や葛藤などの本音をさらけ出す学生のみなさんと\nそれに対してまっすぐに向き合う呂布さんの姿勢から、\n学びや生き方に対する思考を広げるきっかけとなるサイトとなっています。",
+      "video_url": "https://www.youtube.com/watch?v=vsAYxyeDz1c",
+      "url": "https://rkc.takushoku-u.ac.jp/",
+      "images": [
+        "/images/uploads/スクリーンショット-2026-04-20-11.38.06.png",
+        "/images/uploads/スクリーンショット-2026-04-20-11.37.31.png"
+      ]
     },
     {
       "featured": true,
@@ -104,6 +76,19 @@
         "ネーミング"
       ],
       "published": true
+    },
+    {
+      "video_url": "",
+      "featured": true,
+      "published": true,
+      "url": "#",
+      "title": "ニチバン｜新聞広告",
+      "images": [],
+      "image": "/images/uploads/セロテープ.jpg",
+      "categories": [
+        "キャッチコピー"
+      ],
+      "description": "ニチバンのSDGs達成に向けたチャレンジ「Small Action For the Life」を伝える広告のコピーライティングを担当。セロテープが持つファクトを大胆かつ丁寧に伝えることを目指しました。第51回 日経MJ広告賞にて大賞を受賞。\n"
     },
     {
       "video_url": "youtube.com/watch?v=vKqtrT8bKc0&time_continue=13&source_ve_path=NzY3NTg&embeds_referring_euri=https%3A%2F%2Fwww.bcl-company.jp%2F",
@@ -122,18 +107,45 @@
       "description": "多様なコスメティック商品を開発しているBCLカンパニーの、企業理念および理念浸透用のムービー制作をお手伝いしました。\n社内ワークショップから抽出された社員の大切にしている価値観を、化粧品会社らしさを想起させる「塗り替える」「彩る」などの表現に落とし込んでいきました。"
     },
     {
-      "featured": true,
+      "video_url": "",
+      "featured": false,
       "published": true,
-      "title": "拓殖大学 ｜ 特設サイト",
-      "image": "/images/uploads/スクリーンショット-2026-04-20-11.27.31.png",
-      "description": "拓殖大学の特設サイト「コトバで拓け、キミの世界。」、\n呂布カルマさんと学生4名の対談記事の制作を担当しました。\n唯一無二の言語感覚を持つ呂布氏との対話を通じ、学生が自身の人生観や野心、葛藤を「言語化」するプロセスを追った自己再発見ドキュメンタリー。\n苦悩や葛藤などの本音をさらけ出す学生のみなさんと\nそれに対してまっすぐに向き合う呂布さんの姿勢から、\n学びや生き方に対する思考を広げるきっかけとなるサイトとなっています。",
-      "video_url": "https://www.youtube.com/watch?v=vsAYxyeDz1c",
-      "url": "https://rkc.takushoku-u.ac.jp/",
+      "url": "#",
+      "title": "ELIZABETH｜キービジュアル",
+      "images": [],
+      "image": "/images/uploads/03150909_64110caa9871f.jpg",
+      "categories": [
+        "キャッチコピー"
+      ],
+      "description": "唇の色・ツヤ・うるおいを守るティント「RIP GUARDIAN」のキャッチコピーを開発しました。\n「GUARDIAN＝守護神」という商品名を活かすため、「神」というフレーズを活用して印象的な表現をめざしました。\n"
+    },
+    {
+      "video_url": "",
+      "featured": false,
+      "published": true,
+      "url": "#",
+      "title": "エミナルクリニック｜ブランドメッセージ",
+      "images": [],
+      "image": "/images/uploads/スクリーンショット-2024-04-24-15.21.18.png",
+      "categories": [
+        "ブランディング",
+        "コンセプトワーク",
+        "キャッチコピー"
+      ],
+      "description": "女性向けに医療脱毛サービスを提供する、エミナルクリニックのブランドメッセージを開発しました。\n開発に当たっては、経営陣や実際にクリニックで働くドクターにヒアリングを実施し、エミナルクリニックの価値や独自性を抽出。最終的にクリニック名と連動するメッセージとしました。"
+    },
+    {
+      "featured": false,
+      "published": true,
+      "title": "柳屋本店「My Style」 ｜ 取材記事",
+      "categories": [
+        "取材記事"
+      ],
+      "image": "/images/uploads/スクリーンショット-2026-04-20-14.07.16.png",
       "images": [
-        "/images/uploads/スクリーンショット-2026-04-20-11.38.06.png",
-        "/images/uploads/スクリーンショット-2026-04-20-13.46.17.png",
-        "/images/uploads/スクリーンショット-2026-04-20-11.37.31.png"
-      ]
+        "/images/uploads/スクリーンショット-2026-04-20-14.06.43.png"
+      ],
+      "description": "化粧品の製造販売を手がける柳屋本店が運営するオウンドメディア「My Style」の取材記事制作を担当しました。\n3ピースバンド「reGretGirl」と柳屋本店の商品「あんず油」のコラボレーション企画となっており、スペシャルサイトのライティングも合わせて担当しています。"
     }
   ]
 }
