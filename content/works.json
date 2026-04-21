@@ -287,6 +287,25 @@
       "image": "/images/uploads/kyoto-ad_01.jpg",
       "description": "第27回京都広告賞「商工会議所会頭賞」受賞作品。金釘を使わない「京指物」という技術や、同社のものづくりにかける想いを、\n「木合いが違う。」というコピーとシンボリックなグラフィックで表現しました、",
       "url": "https://www.kaaa.jp/nyusho27.html"
+    },
+    {
+      "featured": true,
+      "published": true,
+      "title": "ボードゲーム ｜ ソノナモ",
+      "categories": [
+        "ゲームデザイン",
+        "ネーミング"
+      ],
+      "image": "/images/uploads/スクリーンショット-2026-04-21-14.20.43.png",
+      "images": [
+        "/images/uploads/sononamo_notion.jpg",
+        "/images/uploads/sononamo_howtoplay.jpg",
+        "/images/uploads/img_4901.jpg",
+        "/images/uploads/img_4900.jpg",
+        "/images/uploads/img_4912.jpg"
+      ],
+      "description": "コピーライターとしての知識やノウハウを活かして、ネーミング力育成ゲーム「ソノナモ」を自主制作。\nゲームマーケット2025春にて限定販売し、即日完売しました。",
+      "url": "https://www.bear.cool/board-game/goods/31848/info"
     }
   ]
 }
