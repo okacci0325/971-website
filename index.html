@@ -1414,13 +1414,14 @@
       return allVisibleItems.filter(item => (item.categories || []).includes(activeFilter));
     }
 
-    function renderWorks() {
+    /* fullRender: フィルター変更・初期読み込み時にグリッドを全件構築 */
+    function fullRender() {
       const grid     = document.getElementById('worksGrid');
       const filtered = getFilteredItems();
-      const toShow   = filtered.slice(0, visibleCount);
 
-      grid.innerHTML = toShow.map(item => `
-        <button class="work-card fade-in" data-idx="${item._origIdx}">
+      // 全件をDOMに入れる。visibleCount超はhiddenで非表示
+      grid.innerHTML = filtered.map((item, i) => `
+        <button class="work-card fade-in${i >= visibleCount ? ' hidden' : ''}" data-idx="${item._origIdx}">
           <div class="work-img">
             ${item.image
               ? `<img src="${item.image}" alt="${item.title}" loading="lazy" />`
@@ -1440,22 +1441,45 @@
         card.addEventListener('click', () => openModal(+card.dataset.idx));
       });
 
+      // 表示中のカードだけ fade-in を起動
       setTimeout(() => {
-        grid.querySelectorAll('.fade-in').forEach(el => fadeObs.observe(el));
+        grid.querySelectorAll('.work-card:not(.hidden)').forEach(el => fadeObs.observe(el));
       }, 50);
 
-      /* More ボタン制御 */
-      if (filtered.length > visibleCount) {
+      updateMoreBtn(filtered.length);
+    }
+
+    /* appendReveal: Moreクリック時はDOM変更なし、クラス切り替えのみ */
+    function appendReveal() {
+      const grid     = document.getElementById('worksGrid');
+      const filtered = getFilteredItems();
+      const allCards = Array.from(grid.querySelectorAll('.work-card'));
+
+      allCards.forEach((card, i) => {
+        if (i < visibleCount && card.classList.contains('hidden')) {
+          card.classList.remove('hidden');
+          // 少し遅らせてfade-inを発火（display:none→block後にobserveする必要あり）
+          setTimeout(() => fadeObs.observe(card), 20);
+        }
+      });
+
+      updateMoreBtn(filtered.length);
+    }
+
+    function updateMoreBtn(total) {
+      if (total > visibleCount) {
         moreBtn.classList.remove('hidden');
       } else {
         moreBtn.classList.add('hidden');
       }
     }
 
-    /* ── Works More ボタン（段階表示）── */
+    function renderWorks() { fullRender(); }
+
+    /* ── Works More ボタン（段階表示・DOM変更なし）── */
     moreBtn.addEventListener('click', () => {
       visibleCount += getPageSize();
-      renderWorks();
+      appendReveal();
     });
 
     /* ── News アコーディオン ── */
