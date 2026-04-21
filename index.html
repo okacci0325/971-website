@@ -1005,8 +1005,8 @@
       /* --- MODAL --- */
       .modal-overlay { padding: 0; align-items: flex-end; }
       .modal-panel { max-height: 92vh; border-radius: 0; }
-      .modal-body { grid-template-columns: 1fr; }
-      .modal-info { padding: 28px 24px 40px; }
+      .modal-body { grid-template-columns: 1fr; grid-template-rows: auto 1fr; }
+      .modal-info { padding: 28px 24px 40px; overflow-y: auto; min-height: 0; }
       .modal-media-main { flex: none; aspect-ratio: 1/1; width: 100%; }
       .modal-thumbs { overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; flex-wrap: nowrap; }
       .modal-thumbs::-webkit-scrollbar { display: none; }
