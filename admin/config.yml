@@ -33,7 +33,8 @@ collections:
                 required: false
                 field: { label: 画像, name: image, widget: image }
               - { label: 説明文, name: description, widget: text, required: false }
-              - { label: 動画URL, name: video_url, widget: string, required: false, hint: "YouTubeのURL（例: https://youtu.be/xxxxx）または動画ファイルのURL" }
+              - { label: 動画URL（YouTube）, name: video_url, widget: string, required: false, hint: "YouTubeのURL（例: https://youtu.be/xxxxx）" }
+              - { label: 動画ファイル（直接アップロード）, name: video_file, widget: file, required: false, hint: "MP4などの動画ファイル。推奨：30秒以内・50MB以下（長尺はYouTube推奨）" }
               - { label: リンク先URL, name: url, widget: string, required: false, hint: "省略可（#でOK）" }
               - { label: 最初から表示する, name: featured, widget: boolean, default: true, hint: "falseにすると「More」ボタンで展開" }
               - { label: 公開する, name: published, widget: boolean, default: true, hint: "falseにするとサイトに表示されません" }

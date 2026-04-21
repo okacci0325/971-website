@@ -1007,7 +1007,9 @@
       .modal-panel { max-height: 92vh; border-radius: 0; }
       .modal-body { grid-template-columns: 1fr; }
       .modal-info { padding: 28px 24px 40px; }
-      .modal-thumb { width: calc(33.333% - 3px); }
+      .modal-thumbs { overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; flex-wrap: nowrap; }
+      .modal-thumbs::-webkit-scrollbar { display: none; }
+      .modal-thumb { width: 56px; flex-shrink: 0; }
     }
   </style>
 </head>
@@ -1353,8 +1355,14 @@
 
       /* メディアリスト（動画 + 画像群）*/
       const mediaList = [];
-      const embed = toEmbedUrl(item.video_url);
-      if (embed) mediaList.push({ type: 'video', src: embed, raw: item.video_url });
+      // YouTube
+      if (item.video_url) {
+        const yt = item.video_url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([^&?]+)/);
+        if (yt) mediaList.push({ type: 'youtube', src: `https://www.youtube.com/embed/${yt[1]}?rel=0` });
+      }
+      // アップロード動画ファイル
+      if (item.video_file) mediaList.push({ type: 'local-video', src: item.video_file });
+      // 画像
       const thumb = item.image || '';
       if (thumb) mediaList.push({ type: 'img', src: thumb });
       (item.images || []).forEach(src => { if (src) mediaList.push({ type: 'img', src }); });
@@ -1362,7 +1370,7 @@
       /* サムネイル */
       modalThumbs.innerHTML = mediaList.length > 1
         ? mediaList.map((m, i) => {
-            if (m.type === 'video') {
+            if (m.type === 'youtube' || m.type === 'local-video') {
               return `<button class="modal-thumb modal-thumb-video${i === 0 ? ' active' : ''}" data-idx="${i}" aria-label="動画">▶</button>`;
             }
             return `<img class="modal-thumb${i === 0 ? ' active' : ''}" src="${m.src}" data-idx="${i}" alt="" loading="lazy" />`;
@@ -1390,8 +1398,10 @@
         modalMain.innerHTML = '<div class="modal-media-placeholder">Visual / Image</div>';
         return;
       }
-      if (m.type === 'video') {
+      if (m.type === 'youtube') {
         modalMain.innerHTML = `<div class="modal-video-wrap"><iframe src="${m.src}" allowfullscreen allow="autoplay; encrypted-media"></iframe></div>`;
+      } else if (m.type === 'local-video') {
+        modalMain.innerHTML = `<video src="${m.src}" controls playsinline style="width:100%;height:100%;object-fit:contain;background:#000;"></video>`;
       } else {
         modalMain.innerHTML = `<img src="${m.src}" alt="" />`;
       }
