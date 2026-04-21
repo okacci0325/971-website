@@ -173,6 +173,21 @@
       ],
       "description": "アサヒビール採用サイトの特集記事の取材・ライティングを担当。情熱を持って働かれている社員のみなさまの姿を通じて、アサヒビールの魅力に迫りました。",
       "url": "https://www.asahibeer.co.jp/saiyo/"
+    },
+    {
+      "featured": false,
+      "published": true,
+      "title": "ママ夢ラジオ ｜ 理念策定",
+      "categories": [
+        "理念策定"
+      ],
+      "image": "/images/uploads/mamayume_logo.png",
+      "images": [
+        "/images/uploads/スクリーンショット-2026-04-21-10.11.58.png",
+        "/images/uploads/スクリーンショット-2026-04-21-10.09.52.png"
+      ],
+      "description": "株式会社わたしたちが運営するラジオ制作コミュニティ「ママ夢ラジオ」の理念を策定。ヒアリングを通じて「親しみやすさ」や「ラジオコミュニティらしさ」など\n「ママ夢ラジオ」の独自性を感じさせる言葉を模索しながら言葉を紡いでいきました。",
+      "url": "https://mamayumeradio.com/"
     }
   ]
 }
