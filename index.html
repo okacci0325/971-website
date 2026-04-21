@@ -681,7 +681,7 @@
     .form-submit:hover { background: #0d2860; }
 
     /* ══ FOOTER ═════════════════════════════ */
-    .footer-wave { display: block; line-height: 0; margin-bottom: -2px; }
+    .footer-wave { display: block; line-height: 0; margin-bottom: -2px; background: var(--off-white); }
     .footer-wave svg { display: block; width: 100%; height: 120px; }
     footer {
       background: var(--black);
@@ -1671,9 +1671,22 @@
           .filter(item => item.published !== false);
 
         /* ── フィルターボタン生成 ── */
+        // settings.json の filter_tags でタグの表示・順番を制御
+        let filterTagsOrder = [];
+        try {
+          const sr   = await fetch('/content/settings.json');
+          const sd   = await sr.json();
+          filterTagsOrder = sd.filter_tags || [];
+        } catch {}
+
+        const allCats = [...new Set(allVisibleItems.flatMap(item => item.categories || []))];
+        // filter_tags が設定されていればその順番・内容を優先。空なら全タグ自動表示
+        const displayCats = filterTagsOrder.length > 0
+          ? filterTagsOrder.filter(t => allCats.includes(t))
+          : allCats;
+
         const filterDiv = document.getElementById('worksFilter');
-        const allCats   = [...new Set(allVisibleItems.flatMap(item => item.categories || []))];
-        filterDiv.innerHTML = ['all', ...allCats].map(cat => `
+        filterDiv.innerHTML = ['all', ...displayCats].map(cat => `
           <button class="filter-btn${cat === 'all' ? ' active' : ''}" data-cat="${cat}">
             ${cat === 'all' ? 'All' : cat}
           </button>
