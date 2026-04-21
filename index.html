@@ -422,6 +422,88 @@
     .btn-more:hover { background: var(--navy); color: var(--white); }
     .btn-more.hidden { display: none; }
 
+    /* Works Filter */
+    .works-filter {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 36px;
+    }
+    .filter-btn {
+      font-family: var(--sans);
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--navy);
+      background: none;
+      border: 1px solid rgba(11,31,72,0.25);
+      padding: 7px 20px;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s, border-color 0.2s;
+    }
+    .filter-btn:hover { background: rgba(11,31,72,0.06); }
+    .filter-btn.active { background: var(--navy); color: var(--white); border-color: var(--navy); }
+
+    /* Image Lightbox */
+    .img-lightbox {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.95);
+      z-index: 10000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.22s;
+    }
+    .img-lightbox.open { opacity: 1; pointer-events: auto; }
+    .img-lightbox img {
+      max-width: 90vw;
+      max-height: 90vh;
+      object-fit: contain;
+      display: block;
+      user-select: none;
+    }
+    .img-lb-close {
+      position: absolute;
+      top: 20px; right: 24px;
+      background: none; border: none;
+      color: rgba(255,255,255,0.65);
+      font-size: 30px;
+      line-height: 1;
+      cursor: pointer;
+      transition: color 0.2s;
+      padding: 4px 8px;
+    }
+    .img-lb-close:hover { color: #fff; }
+    .img-lb-prev, .img-lb-next {
+      position: absolute;
+      top: 50%; transform: translateY(-50%);
+      background: none; border: none;
+      color: rgba(255,255,255,0.55);
+      font-size: 60px;
+      line-height: 1;
+      cursor: pointer;
+      padding: 0 20px;
+      transition: color 0.2s;
+      user-select: none;
+    }
+    .img-lb-prev { left: 0; }
+    .img-lb-next { right: 0; }
+    .img-lb-prev:hover, .img-lb-next:hover { color: #fff; }
+    .img-lb-prev.hidden, .img-lb-next.hidden { display: none; }
+    .img-lb-counter {
+      position: absolute;
+      bottom: 20px; left: 50%; transform: translateX(-50%);
+      font-family: var(--sans);
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      color: rgba(255,255,255,0.35);
+    }
+    .img-lb-counter.hidden { display: none; }
+
     /* ══ ABOUT ══════════════════════════════ */
     #about { padding: 0; }
 
@@ -1016,6 +1098,15 @@
 </head>
 <body>
 
+  <!-- 画像ライトボックス -->
+  <div class="img-lightbox" id="imgLightbox" role="dialog" aria-modal="true">
+    <button class="img-lb-close" id="imgLbClose" aria-label="閉じる">✕</button>
+    <button class="img-lb-prev hidden" id="imgLbPrev" aria-label="前へ">‹</button>
+    <button class="img-lb-next hidden" id="imgLbNext" aria-label="次へ">›</button>
+    <img id="imgLbImg" src="" alt="" />
+    <div class="img-lb-counter hidden" id="imgLbCounter"></div>
+  </div>
+
   <!-- ローダー -->
   <div id="loader">
     <div class="loader-logo-wrap">
@@ -1090,6 +1181,9 @@
     </div>
     <div class="smk ws1" aria-hidden="true"><svg viewBox="0 0 280 90" xmlns="http://www.w3.org/2000/svg"><ellipse cx="24" cy="62" rx="20" ry="15"/><ellipse cx="62" cy="46" rx="34" ry="23"/><ellipse cx="112" cy="56" rx="28" ry="19"/><ellipse cx="162" cy="42" rx="36" ry="25"/><ellipse cx="216" cy="52" rx="30" ry="20"/><ellipse cx="258" cy="60" rx="22" ry="16"/><ellipse cx="88" cy="28" rx="20" ry="15"/><ellipse cx="140" cy="22" rx="26" ry="18"/><ellipse cx="192" cy="26" rx="22" ry="16"/></svg></div>
     <div class="smk ws2" aria-hidden="true"><svg viewBox="0 0 90 60" xmlns="http://www.w3.org/2000/svg"><ellipse cx="22" cy="40" rx="18" ry="14"/><ellipse cx="46" cy="28" rx="24" ry="19"/><ellipse cx="70" cy="38" rx="17" ry="13"/><ellipse cx="34" cy="16" rx="14" ry="11"/><ellipse cx="58" cy="13" rx="16" ry="12"/></svg></div>
+    <div class="works-filter" id="worksFilter">
+      <!-- JS で動的に挿入 -->
+    </div>
     <div class="works-grid" id="worksGrid">
       <!-- JS で content/works.json から動的に挿入 -->
     </div>
@@ -1305,11 +1399,63 @@
     }, { threshold: 0.5 });
     document.querySelectorAll('section[id], footer').forEach(s => observer.observe(s));
 
-    /* ── Works More ボタン ── */
+    /* ── Works 状態管理 ── */
     const moreBtn = document.getElementById('worksMore');
+    let allVisibleItems = [];
+    let activeFilter    = 'all';
+    let visibleCount    = 0;
+
+    function getPageSize() {
+      return window.innerWidth <= 767 ? 4 : 6;
+    }
+
+    function getFilteredItems() {
+      if (activeFilter === 'all') return allVisibleItems;
+      return allVisibleItems.filter(item => (item.categories || []).includes(activeFilter));
+    }
+
+    function renderWorks() {
+      const grid     = document.getElementById('worksGrid');
+      const filtered = getFilteredItems();
+      const toShow   = filtered.slice(0, visibleCount);
+
+      grid.innerHTML = toShow.map(item => `
+        <button class="work-card fade-in" data-idx="${item._origIdx}">
+          <div class="work-img">
+            ${item.image
+              ? `<img src="${item.image}" alt="${item.title}" loading="lazy" />`
+              : '<div class="work-img-placeholder">Visual / Image</div>'
+            }
+          </div>
+          <div class="work-body">
+            <p class="work-title">${item.title}</p>
+            <div class="work-tags">
+              ${(item.categories || []).map(c => `<span class="tag">${c}</span>`).join('')}
+            </div>
+          </div>
+        </button>
+      `).join('');
+
+      grid.querySelectorAll('.work-card').forEach(card => {
+        card.addEventListener('click', () => openModal(+card.dataset.idx));
+      });
+
+      setTimeout(() => {
+        grid.querySelectorAll('.fade-in').forEach(el => fadeObs.observe(el));
+      }, 50);
+
+      /* More ボタン制御 */
+      if (filtered.length > visibleCount) {
+        moreBtn.classList.remove('hidden');
+      } else {
+        moreBtn.classList.add('hidden');
+      }
+    }
+
+    /* ── Works More ボタン（段階表示）── */
     moreBtn.addEventListener('click', () => {
-      document.querySelectorAll('#worksGrid .work-card.hidden').forEach(c => c.classList.remove('hidden'));
-      moreBtn.classList.add('hidden');
+      visibleCount += getPageSize();
+      renderWorks();
     });
 
     /* ── News アコーディオン ── */
@@ -1331,8 +1477,10 @@
 
     /* ── モーダル ── */
     let worksData = [];
-    const modal     = document.getElementById('workModal');
-    const modalMain = document.getElementById('modalMediaMain');
+    let currentMediaList = [];
+    let currentMediaIdx  = 0;
+    const modal       = document.getElementById('workModal');
+    const modalMain   = document.getElementById('modalMediaMain');
     const modalThumbs = document.getElementById('modalThumbs');
 
     function openModal(index) {
@@ -1383,11 +1531,14 @@
         el.addEventListener('click', () => {
           modalThumbs.querySelectorAll('.modal-thumb').forEach(t => t.classList.remove('active'));
           el.classList.add('active');
-          showMedia(mediaList[+el.dataset.idx]);
+          currentMediaIdx = +el.dataset.idx;
+          showMedia(mediaList[currentMediaIdx]);
         });
       });
 
       /* メイン表示 */
+      currentMediaList = mediaList;
+      currentMediaIdx  = 0;
       showMedia(mediaList[0] || null);
 
       modal.classList.add('open');
@@ -1397,14 +1548,20 @@
     function showMedia(m) {
       if (!m) {
         modalMain.innerHTML = '<div class="modal-media-placeholder">Visual / Image</div>';
+        modalMain.style.cursor = '';
         return;
       }
       if (m.type === 'youtube') {
         modalMain.innerHTML = `<div class="modal-video-wrap"><iframe src="${m.src}" allowfullscreen allow="autoplay; encrypted-media"></iframe></div>`;
+        modalMain.style.cursor = '';
       } else if (m.type === 'local-video') {
         modalMain.innerHTML = `<video src="${m.src}" controls playsinline style="width:100%;height:100%;object-fit:contain;background:#000;"></video>`;
+        modalMain.style.cursor = '';
       } else {
-        modalMain.innerHTML = `<img src="${m.src}" alt="" />`;
+        modalMain.innerHTML = `<img src="${m.src}" alt="" style="cursor:zoom-in" />`;
+        modalMain.querySelector('img').addEventListener('click', () => {
+          openLightbox(currentMediaList, currentMediaIdx);
+        });
       }
     }
 
@@ -1416,48 +1573,102 @@
 
     document.getElementById('modalClose').addEventListener('click', closeModal);
     modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
-    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+    /* ── 画像ライトボックス ── */
+    const lightbox   = document.getElementById('imgLightbox');
+    const lbImg      = document.getElementById('imgLbImg');
+    const lbClose    = document.getElementById('imgLbClose');
+    const lbPrev     = document.getElementById('imgLbPrev');
+    const lbNext     = document.getElementById('imgLbNext');
+    const lbCounter  = document.getElementById('imgLbCounter');
+    let lbImages = [];
+    let lbIdx    = 0;
+
+    function openLightbox(mediaList, startIdx) {
+      // 画像だけ抽出（元インデックスも保持）
+      lbImages = mediaList
+        .map((m, i) => ({ ...m, _mIdx: i }))
+        .filter(m => m.type === 'img');
+      if (!lbImages.length) return;
+
+      // startIdx が画像の何番目か探す
+      const pos = lbImages.findIndex(m => m._mIdx === startIdx);
+      lbIdx = pos >= 0 ? pos : 0;
+
+      lbShowCurrent();
+      lightbox.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function lbShowCurrent() {
+      lbImg.src = lbImages[lbIdx].src;
+      const multi = lbImages.length > 1;
+      lbPrev.classList.toggle('hidden', !multi);
+      lbNext.classList.toggle('hidden', !multi);
+      lbCounter.classList.toggle('hidden', !multi);
+      if (multi) lbCounter.textContent = (lbIdx + 1) + ' / ' + lbImages.length;
+    }
+
+    function closeLightbox() {
+      lightbox.classList.remove('open');
+      lbImg.src = '';
+    }
+
+    function lbNavigate(dir) {
+      lbIdx = (lbIdx + dir + lbImages.length) % lbImages.length;
+      lbShowCurrent();
+    }
+
+    lbClose.addEventListener('click', closeLightbox);
+    lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
+    lbPrev.addEventListener('click', e => { e.stopPropagation(); lbNavigate(-1); });
+    lbNext.addEventListener('click', e => { e.stopPropagation(); lbNavigate(1); });
+
+    document.addEventListener('keydown', e => {
+      if (lightbox.classList.contains('open')) {
+        if (e.key === 'Escape')      closeLightbox();
+        if (e.key === 'ArrowLeft')   lbNavigate(-1);
+        if (e.key === 'ArrowRight')  lbNavigate(1);
+        return;
+      }
+      if (e.key === 'Escape') closeModal();
+    });
 
     /* ── Works 動的読み込み ── */
     async function loadWorks() {
       try {
         const res  = await fetch('/content/works.json');
         const data = await res.json();
-        worksData  = data.items || [];
-        const grid = document.getElementById('worksGrid');
-        const INITIAL = 6;
+        worksData = data.items || [];
 
-        // published が false のアイテムを除外（未設定は表示）
-        const visibleItems = worksData
+        // published が false のアイテムを除外
+        allVisibleItems = worksData
           .map((item, i) => ({ ...item, _origIdx: i }))
           .filter(item => item.published !== false);
 
-        grid.innerHTML = visibleItems.map((item, i) => `
-          <button class="work-card fade-in${i >= INITIAL ? ' hidden' : ''}" data-idx="${item._origIdx}">
-            <div class="work-img">
-              ${item.image
-                ? `<img src="${item.image}" alt="${item.title}" loading="lazy" />`
-                : '<div class="work-img-placeholder">Visual / Image</div>'
-              }
-            </div>
-            <div class="work-body">
-              <p class="work-title">${item.title}</p>
-              <div class="work-tags">
-                ${(item.categories || []).map(c => `<span class="tag">${c}</span>`).join('')}
-              </div>
-            </div>
+        /* ── フィルターボタン生成 ── */
+        const filterDiv = document.getElementById('worksFilter');
+        const allCats   = [...new Set(allVisibleItems.flatMap(item => item.categories || []))];
+        filterDiv.innerHTML = ['all', ...allCats].map(cat => `
+          <button class="filter-btn${cat === 'all' ? ' active' : ''}" data-cat="${cat}">
+            ${cat === 'all' ? 'All' : cat}
           </button>
         `).join('');
 
-        grid.querySelectorAll('.work-card').forEach(card => {
-          card.addEventListener('click', () => openModal(+card.dataset.idx));
+        filterDiv.querySelectorAll('.filter-btn').forEach(btn => {
+          btn.addEventListener('click', () => {
+            filterDiv.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            activeFilter = btn.dataset.cat;
+            visibleCount = getPageSize();
+            renderWorks();
+          });
         });
 
-        setTimeout(() => {
-          grid.querySelectorAll('.fade-in').forEach(el => fadeObs.observe(el));
-        }, 50);
-
-        if (visibleItems.length > INITIAL) moreBtn.classList.remove('hidden');
+        /* ── 初期描画 ── */
+        activeFilter = 'all';
+        visibleCount = getPageSize();
+        renderWorks();
       } catch (e) {
         console.error('Works load error:', e);
       }
