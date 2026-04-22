@@ -69,6 +69,30 @@ collections:
             widget: list
             field: { label: テキスト, name: text, widget: string }
 
+  - name: partners
+    label: Partner（パートナー）
+    files:
+      - label: パートナーリスト
+        name: partners_list
+        file: content/partners.json
+        fields:
+          - label: パートナー
+            name: items
+            widget: list
+            fields:
+              - { label: 名前, name: name, widget: string }
+              - { label: 肩書き／所属, name: title, widget: string, required: false }
+              - { label: 写真, name: photo, widget: image, required: false }
+              - { label: 詳細プロフィール, name: bio, widget: text, required: false }
+              - label: 案件画像（複数可）
+                name: images
+                widget: list
+                required: false
+                field: { label: 画像, name: image, widget: image }
+              - { label: 動画URL（YouTube）, name: video_url, widget: string, required: false, hint: "YouTubeのURL（例: https://youtu.be/xxxxx）" }
+              - { label: 動画ファイル（直接アップロード）, name: video_file, widget: file, required: false }
+              - { label: 公開する, name: published, widget: boolean, default: true }
+
   - name: news
     label: News（お知らせ）
     files:

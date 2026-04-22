@@ -675,6 +675,134 @@
     .profile-photo-sns a:hover { color: var(--black); }
     .profile-photo-sns svg { width: 18px; height: 18px; }
 
+    /* ══ PARTNER ════════════════════════════ */
+    #partner { background: var(--white); }
+    .partner-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 40px;
+      margin-top: 48px;
+    }
+    .partner-card {
+      background: none;
+      border: none;
+      cursor: pointer;
+      text-align: center;
+      padding: 0;
+      transition: transform 0.25s ease, opacity 0.25s;
+    }
+    .partner-card:hover { transform: translateY(-5px); opacity: 0.82; }
+    .partner-photo-wrap {
+      width: 75%;
+      max-width: 160px;
+      aspect-ratio: 1/1;
+      border-radius: 50%;
+      overflow: hidden;
+      margin: 0 auto 18px;
+      background: var(--gray-lt);
+    }
+    .partner-photo-wrap img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: center top;
+    }
+    .partner-photo-placeholder {
+      width: 100%; height: 100%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 32px; color: rgba(0,0,0,0.13);
+    }
+    .partner-name {
+      font-family: var(--serif);
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--black);
+      margin-bottom: 6px;
+      letter-spacing: 0.04em;
+    }
+    .partner-role {
+      font-family: var(--serif);
+      font-size: 12px;
+      color: var(--gray);
+      line-height: 1.7;
+    }
+
+    /* Partner Modal */
+    .pmodal-body {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      height: 100%;
+      overflow: hidden;
+    }
+    .pmodal-body.no-media { grid-template-columns: 1fr; }
+    .pmodal-side {
+      padding: 44px 32px 36px;
+      overflow-y: auto;
+      border-right: 1px solid var(--gray-lt);
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .pmodal-body.no-media .pmodal-side { border-right: none; max-width: 560px; }
+    .pmodal-photo-box {
+      width: 100%;
+      aspect-ratio: 1/1;
+      overflow: hidden;
+      background: var(--gray-lt);
+      margin-bottom: 6px;
+    }
+    .pmodal-photo-box img { width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block; }
+    .pmodal-name {
+      font-family: var(--serif);
+      font-size: clamp(18px, 1.6vw, 22px);
+      font-weight: 700;
+      color: var(--black);
+      letter-spacing: 0.05em;
+      line-height: 1.4;
+    }
+    .pmodal-role {
+      font-family: var(--serif);
+      font-size: 13px;
+      color: var(--navy);
+      letter-spacing: 0.08em;
+      line-height: 1.6;
+    }
+    .pmodal-bio {
+      font-family: var(--serif);
+      font-size: 13px;
+      color: #444;
+      line-height: 2.1;
+      white-space: pre-wrap;
+      flex: 1;
+    }
+    .pmodal-media-col {
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    .pmodal-media-main {
+      flex: 1;
+      min-height: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      background: #111;
+    }
+    .pmodal-media-main img { width: 100%; height: 100%; object-fit: contain; display: block; }
+    .pmodal-media-main iframe,
+    .pmodal-media-main video { width: 100%; height: 100%; border: none; display: block; }
+    .pmodal-thumbs {
+      display: flex;
+      gap: 3px;
+      padding: 3px;
+      background: #222;
+      flex-shrink: 0;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+    .pmodal-thumbs::-webkit-scrollbar { display: none; }
+
     /* ══ NEWS ═══════════════════════════════ */
     #news { background: var(--white); }
     .news-list { display: flex; flex-direction: column; }
@@ -1131,6 +1259,16 @@
       .profile-grid { grid-template-columns: 1fr; gap: 32px; }
       .profile-photo { aspect-ratio: 4/3; max-width: 280px; }
 
+      /* --- PARTNER --- */
+      .partner-grid { grid-template-columns: repeat(2, 1fr); gap: 28px; margin-top: 32px; }
+      .partner-photo-wrap { width: 70%; }
+      .pmodal-body { grid-template-columns: 1fr; grid-template-rows: auto 1fr; }
+      .pmodal-side { border-right: none; border-bottom: 1px solid var(--gray-lt); padding: 24px 20px 20px; gap: 10px; }
+      .pmodal-body.no-media .pmodal-side { border-bottom: none; }
+      .pmodal-photo-box { max-width: 180px; margin: 0 auto; }
+      .pmodal-media-main { flex: none; aspect-ratio: 1/1; width: 100%; }
+      .pmodal-thumbs { flex-wrap: nowrap; }
+
       /* --- NEWS --- */
       #news { padding: 56px 24px; }
       .news-trigger { gap: 12px; padding: 20px 0; }
@@ -1191,6 +1329,7 @@
   <nav class="drawer" id="drawer">
     <a href="#works" onclick="closeMenu()">Works<span class="drawer-en">works</span></a>
     <a href="#about" onclick="closeMenu()">About<span class="drawer-en">about</span></a>
+    <a href="#partner" onclick="closeMenu()" id="drawerPartnerLink" style="display:none">Partner<span class="drawer-en">partner</span></a>
     <a href="#news"  onclick="closeMenu()">News<span class="drawer-en">news</span></a>
     <a href="#contact" onclick="closeMenu()">Contact<span class="drawer-en">contact</span></a>
   </nav>
@@ -1366,6 +1505,35 @@
       </div>
     </div>
   </section>
+
+  <!-- ══ PARTNER ══ -->
+  <section id="partner" class="sec" style="display:none">
+    <h2 class="sec-label fade-in">Partner</h2>
+    <div class="partner-grid" id="partnerGrid">
+      <!-- JS で content/partners.json から動的に挿入 -->
+    </div>
+  </section>
+
+  <!-- Partner モーダル -->
+  <div class="modal-overlay" id="partnerModal" role="dialog" aria-modal="true">
+    <div class="modal-panel" id="partnerModalPanel">
+      <button class="modal-close" id="pmodalClose" aria-label="閉じる">✕</button>
+      <div class="pmodal-body" id="pmodalBody">
+        <div class="pmodal-side">
+          <div class="pmodal-photo-box" id="pmodalPhotoBox">
+            <img id="pmodalPhoto" src="" alt="" />
+          </div>
+          <h2 class="pmodal-name" id="pmodalName"></h2>
+          <p class="pmodal-role" id="pmodalRole"></p>
+          <p class="pmodal-bio" id="pmodalBio"></p>
+        </div>
+        <div class="pmodal-media-col" id="pmodalMediaCol">
+          <div class="pmodal-media-main" id="pmodalMediaMain"></div>
+          <div class="pmodal-thumbs" id="pmodalThumbs"></div>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!-- ══ NEWS ══ -->
   <section id="news" class="sec">
@@ -1756,7 +1924,10 @@
         if (e.key === 'ArrowRight')  lbNavigate(1);
         return;
       }
-      if (e.key === 'Escape') closeModal();
+      if (e.key === 'Escape') {
+        if (document.getElementById('partnerModal').classList.contains('open')) closePartnerModal();
+        else closeModal();
+      }
     });
 
     /* ── Works 動的読み込み ── */
@@ -1811,6 +1982,140 @@
         console.error('Works load error:', e);
       }
     }
+
+    /* ── Partner 動的読み込み ── */
+    let partnersData = [];
+
+    async function loadPartners() {
+      try {
+        const res  = await fetch('/content/partners.json');
+        const data = await res.json();
+        partnersData = (data.items || []).filter(p => p.published !== false);
+
+        const section = document.getElementById('partner');
+        const grid    = document.getElementById('partnerGrid');
+        const navLink = document.getElementById('drawerPartnerLink');
+
+        if (!partnersData.length) return; // 未登録なら非表示のまま
+
+        section.style.display = '';
+        if (navLink) navLink.style.display = '';
+
+        grid.innerHTML = partnersData.map((p, i) => `
+          <button class="partner-card fade-in" data-pidx="${i}">
+            <div class="partner-photo-wrap">
+              ${p.photo
+                ? `<img src="${p.photo}" alt="${p.name}" loading="lazy" />`
+                : '<div class="partner-photo-placeholder">👤</div>'
+              }
+            </div>
+            <p class="partner-name">${p.name}</p>
+            ${p.title ? `<p class="partner-role">${p.title}</p>` : ''}
+          </button>
+        `).join('');
+
+        grid.querySelectorAll('.partner-card').forEach(card => {
+          card.addEventListener('click', () => openPartnerModal(+card.dataset.pidx));
+        });
+
+        setTimeout(() => {
+          grid.querySelectorAll('.fade-in').forEach(el => fadeObs.observe(el));
+        }, 50);
+      } catch (e) {
+        console.error('Partners load error:', e);
+      }
+    }
+
+    /* ── Partner モーダル ── */
+    function openPartnerModal(idx) {
+      const p = partnersData[idx];
+      if (!p) return;
+
+      document.getElementById('pmodalName').textContent = p.name || '';
+      document.getElementById('pmodalRole').textContent = p.title || '';
+      document.getElementById('pmodalBio').textContent  = p.bio || '';
+
+      const photoEl  = document.getElementById('pmodalPhoto');
+      const photoBox = document.getElementById('pmodalPhotoBox');
+      if (p.photo) {
+        photoEl.src = p.photo;
+        photoBox.style.display = '';
+      } else {
+        photoBox.style.display = 'none';
+      }
+
+      /* メディアリスト */
+      const mediaList = [];
+      if (p.video_url) {
+        const yt = p.video_url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([^&?]+)/);
+        if (yt) mediaList.push({ type: 'youtube', src: `https://www.youtube.com/embed/${yt[1]}?rel=0` });
+      }
+      if (p.video_file) mediaList.push({ type: 'local-video', src: p.video_file });
+      (p.images || []).forEach(src => { if (src) mediaList.push({ type: 'img', src }); });
+
+      /* メディアなし → no-media クラスでレイアウト調整 */
+      const body     = document.getElementById('pmodalBody');
+      const mediaCol = document.getElementById('pmodalMediaCol');
+      if (!mediaList.length) {
+        body.classList.add('no-media');
+        mediaCol.style.display = 'none';
+      } else {
+        body.classList.remove('no-media');
+        mediaCol.style.display = '';
+      }
+
+      /* サムネイル */
+      const thumbs = document.getElementById('pmodalThumbs');
+      thumbs.innerHTML = mediaList.length > 1
+        ? mediaList.map((m, i) => {
+            if (m.type === 'youtube' || m.type === 'local-video') {
+              return `<button class="modal-thumb modal-thumb-video${i===0?' active':''}" data-idx="${i}" aria-label="動画">▶</button>`;
+            }
+            return `<img class="modal-thumb${i===0?' active':''}" src="${m.src}" data-idx="${i}" alt="" loading="lazy" />`;
+          }).join('')
+        : '';
+
+      thumbs.querySelectorAll('.modal-thumb').forEach(el => {
+        el.addEventListener('click', () => {
+          thumbs.querySelectorAll('.modal-thumb').forEach(t => t.classList.remove('active'));
+          el.classList.add('active');
+          currentMediaIdx  = +el.dataset.idx;
+          currentMediaList = mediaList;
+          showPMedia(mediaList[currentMediaIdx]);
+        });
+      });
+
+      currentMediaList = mediaList;
+      currentMediaIdx  = 0;
+      showPMedia(mediaList[0] || null);
+
+      document.getElementById('partnerModal').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function showPMedia(m) {
+      const main = document.getElementById('pmodalMediaMain');
+      if (!m) { main.innerHTML = ''; return; }
+      if (m.type === 'youtube') {
+        main.innerHTML = `<div class="modal-video-wrap"><iframe src="${m.src}" allowfullscreen allow="autoplay; encrypted-media"></iframe></div>`;
+      } else if (m.type === 'local-video') {
+        main.innerHTML = `<video src="${m.src}" controls playsinline style="width:100%;height:100%;object-fit:contain;background:#000;"></video>`;
+      } else {
+        main.innerHTML = `<img src="${m.src}" alt="" style="cursor:zoom-in" />`;
+        main.querySelector('img').addEventListener('click', () => openLightbox(currentMediaList, currentMediaIdx));
+      }
+    }
+
+    function closePartnerModal() {
+      document.getElementById('partnerModal').classList.remove('open');
+      document.body.style.overflow = '';
+      document.getElementById('pmodalMediaMain').innerHTML = '';
+    }
+
+    document.getElementById('pmodalClose').addEventListener('click', closePartnerModal);
+    document.getElementById('partnerModal').addEventListener('click', e => {
+      if (e.target === document.getElementById('partnerModal')) closePartnerModal();
+    });
 
     /* ── News 動的読み込み ── */
     async function loadNews() {
@@ -1879,6 +2184,7 @@
     /* ── 初期化 ── */
     document.addEventListener('DOMContentLoaded', () => {
       loadWorks();
+      loadPartners();
       loadNews();
       loadMarquee();
     });
