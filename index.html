@@ -577,6 +577,68 @@
     .service-text { font-family: var(--serif); font-size: 15px; font-weight: 400; color: var(--black); line-height: 1.8; }
     .service-sub { font-size: 12px; color: var(--gray); margin-top: 4px; line-height: 1.7; }
 
+    /* Workflow */
+    .workflow {
+      margin-top: 80px;
+      padding-top: 72px;
+      border-top: 1px solid var(--gray-lt);
+    }
+    .workflow-head {
+      font-family: var(--sans);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: rgba(0,0,0,0.28);
+      margin-bottom: 52px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .workflow-head::before {
+      content: '';
+      flex-shrink: 0;
+      width: 28px; height: 1px;
+      background: var(--gray-lt);
+    }
+    .workflow-steps {
+      display: grid;
+      grid-template-columns: 1fr 48px 1fr 48px 1fr;
+      align-items: start;
+    }
+    .workflow-step {}
+    .workflow-arrow {
+      display: flex;
+      justify-content: center;
+      padding-top: 52px; /* num高さ分を揃える */
+      color: rgba(11,31,72,0.18);
+      font-size: 22px;
+      font-family: var(--sans);
+      user-select: none;
+    }
+    .workflow-num {
+      font-family: var(--sans);
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.25em;
+      color: rgba(11,31,72,0.32);
+      margin-bottom: 14px;
+    }
+    .workflow-title {
+      font-family: var(--serif);
+      font-size: 34px;
+      font-weight: 700;
+      color: var(--navy);
+      letter-spacing: 0.1em;
+      margin-bottom: 20px;
+      line-height: 1;
+    }
+    .workflow-desc {
+      font-size: 13px;
+      color: #555;
+      line-height: 2.15;
+    }
+
     /* Profile */
     .about-profile { background: var(--off-white); padding: 100px 60px; }
     .profile-grid {
@@ -1058,6 +1120,12 @@
       .about-service { padding: 56px 24px; }
       .service-grid { grid-template-columns: 1fr; }
       .service-item { padding: 24px 20px; }
+      .workflow { margin-top: 56px; padding-top: 48px; }
+      .workflow-steps { grid-template-columns: 1fr; }
+      .workflow-arrow { display: none; }
+      .workflow-step { padding-bottom: 40px; border-bottom: 1px solid var(--gray-lt); margin-bottom: 40px; }
+      .workflow-step:last-child { padding-bottom: 0; border-bottom: none; margin-bottom: 0; }
+      .workflow-title { font-size: 28px; }
 
       /* --- PROFILE --- */
       .about-profile { padding: 56px 24px; }
@@ -1226,6 +1294,36 @@
         <div class="service-item fade-in"><span class="service-num">06</span><div><p class="service-text">アナログゲーム制作</p></div></div>
         <div class="service-item fade-in"><span class="service-num">07</span><div><p class="service-text">事業構想支援</p></div></div>
         <div class="service-item fade-in"><span class="service-num">08</span><div><p class="service-text">忍者に関する啓蒙活動</p></div></div>
+      </div>
+
+      <!-- Workflow -->
+      <div class="workflow">
+        <p class="workflow-head">Workflow</p>
+        <div class="workflow-steps">
+
+          <div class="workflow-step fade-in">
+            <p class="workflow-num">01</p>
+            <h3 class="workflow-title">きく</h3>
+            <p class="workflow-desc">「何に困っているのか？」「どんな未来を目指したいのか？」など、お客さまの想いを多角的にお伺いします。</p>
+          </div>
+
+          <div class="workflow-arrow" aria-hidden="true">→</div>
+
+          <div class="workflow-step fade-in">
+            <p class="workflow-num">02</p>
+            <h3 class="workflow-title">かく</h3>
+            <p class="workflow-desc">ヒアリング内容をもとに理想のゴールを描き、そこに向かうための原動力となる言葉を設計します。</p>
+          </div>
+
+          <div class="workflow-arrow" aria-hidden="true">→</div>
+
+          <div class="workflow-step fade-in">
+            <p class="workflow-num">03</p>
+            <h3 class="workflow-title">つむぐ</h3>
+            <p class="workflow-desc">言葉を軸とした戦略やクリエイティブを通じて、お客さまとステークホルダーとのより良い関係を紡いでいきます。</p>
+          </div>
+
+        </div>
       </div>
     </div>
 
