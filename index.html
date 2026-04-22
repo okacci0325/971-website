@@ -1095,14 +1095,13 @@
       .hero-tagline { font-size: clamp(36px, 10vw, 52px); }
       .hero-reading { font-size: 9px; }
       .hero-marquee-wrap {
-        flex: 0 0 110px;
-        height: 110px;
+        flex: 0 0 auto;
+        height: auto;
         justify-content: center;
+        padding: 8px 0;
       }
-      .mq-row:nth-child(2),
-      .mq-row:nth-child(3) { display: none; }
-      .mq-row:first-child { border-top: none; border-bottom: none; padding: 12px 0; }
-      .mq-item { font-size: clamp(20px, 5.5vw, 28px); padding: 0 20px; }
+      .mq-row { padding: 9px 0; }
+      .mq-item { font-size: clamp(17px, 4.8vw, 22px); padding: 0 16px; }
       .hero-subcopy { font-size: 15px; letter-spacing: 0.15em; padding: 16px 24px; }
       .scroll-hint { display: none; }
 
@@ -1443,6 +1442,10 @@
   </footer>
 
   <script>
+    /* ── スクロール位置リセット（リロード時にトップから開始）── */
+    if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+    window.scrollTo(0, 0);
+
     /* ── Loader ── */
     (function() {
       const loader = document.getElementById('loader');
