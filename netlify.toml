@@ -1,10 +1,7 @@
 [build]
   publish = "."
 
-[[redirects]]
-  from = "/thanks"
-  to = "/thanks.html"
-  status = 200
+# /thanks → thanks.html は Cloudflare Pages の Pretty URL が自動処理するため不要
 
 [[headers]]
   for = "/admin/*"
