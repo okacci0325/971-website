@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>971｜コピーライター 岡澤修平</title>
+  <title>コピーライター 岡澤修平｜キャッチコピー・ブランディング・広告制作｜971（東京・三重）</title>
   <meta name="description" content="日経MJ広告賞大賞受賞のコピーライター・岡澤修平（971）のWebサイト。キャッチコピー制作・コンセプト開発・ネーミング・ブランディング支援から、広告・Web・動画・パンフレット制作まで一気通貫で対応。東京・三重県伊賀市を拠点にフリーランスで活動中。" />
   <meta name="keywords" content="コピーライター,キャッチコピー,コンセプト,ネーミング,ブランディング,取材,ライティング,クリエイティブディレクション,Webサイト制作,動画制作,ポスター,パンフレット,広告制作,三重,伊賀,忍者,岡澤修平,971,フリーランス" />
   <link rel="canonical" href="https://97171.jp/" />
@@ -100,6 +100,57 @@
     ]
   }
   </script>
+
+  <!-- FAQ 構造化データ（リッチリザルト対応） -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "コピーライターへの依頼費用の目安を教えてください。",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "案件の内容・ボリューム・スケジュールによって異なります。キャッチコピー1本から、ブランディング全体のディレクション、Webサイトのライティング一式まで、まずはお気軽にご相談ください。ヒアリングのうえ、お見積もりをご提示いたします。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "対応エリアはどこですか？リモートでの依頼は可能ですか？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "東京・三重県伊賀市を拠点としていますが、全国どこからでもご依頼いただけます。オンラインでのヒアリング・打ち合わせにも対応しています。遠方のクライアント様からのご依頼も多数実績があります。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "納期の目安を教えてください。",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "案件の規模によって異なりますが、キャッチコピー・コンセプトワードの場合は通常2〜4週間程度を目安にしています。スケジュールについてはご相談時にすり合わせますので、お急ぎの案件もまずはご相談ください。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "どのような業種・規模の企業からの依頼に対応していますか？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "大手企業から中小企業・スタートアップ・個人事業主まで、業種・規模を問わずお受けしています。製造業・不動産・医療・IT・飲食・教育・自治体など幅広い実績があります。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "コピーライティングだけでなく、デザインや制作も一緒に依頼できますか？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "はい、対応可能です。言葉の開発にとどまらず、クリエイティブディレクションとして広告・Webサイト・動画・パンフレットなどの制作全体をディレクションすることもできます。信頼できるデザイナー・制作パートナーとの連携も可能です。"
+        }
+      }
+    ]
+  }
+  </script>
+
   <link rel="icon" type="image/png" href="/images/logo_black.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -888,6 +939,36 @@
     .form-submit:hover { background: #0d2860; }
 
     /* ══ FOOTER ═════════════════════════════ */
+    /* --- FAQ --- */
+    #faq { background: var(--off-white); }
+    .faq-list { max-width: 720px; margin-top: 48px; }
+    .faq-item { border-bottom: 1px solid var(--gray-lt); }
+    .faq-q {
+      width: 100%; background: none; border: none; cursor: pointer;
+      display: flex; align-items: flex-start; gap: 16px;
+      padding: 24px 0; text-align: left;
+    }
+    .faq-q-mark {
+      flex-shrink: 0; font-family: var(--sans); font-size: 11px; font-weight: 700;
+      letter-spacing: 0.12em; color: var(--gold); padding-top: 3px;
+    }
+    .faq-q-text {
+      font-family: var(--serif); font-size: 15px; color: var(--navy);
+      line-height: 1.75; flex: 1;
+    }
+    .faq-icon {
+      flex-shrink: 0; font-size: 18px; color: rgba(11,31,72,0.3);
+      transition: transform 0.3s ease; padding-top: 2px;
+    }
+    .faq-item.open .faq-icon { transform: rotate(45deg); }
+    .faq-a {
+      overflow: hidden; max-height: 0;
+      transition: max-height 0.4s ease, padding 0.3s ease;
+      padding: 0 0 0 calc(16px + 2.2em);
+    }
+    .faq-item.open .faq-a { max-height: 400px; padding-bottom: 24px; }
+    .faq-a-text { font-size: 14px; color: #555; line-height: 2.1; }
+
     .footer-wave { display: block; line-height: 0; margin-bottom: -2px; background: var(--off-white); }
     .footer-wave svg { display: block; width: 100%; height: 120px; }
     footer {
@@ -1348,6 +1429,7 @@
     <a href="#about" onclick="closeMenu()">About<span class="drawer-en">about</span></a>
     <a href="#partner" onclick="closeMenu()" id="drawerPartnerLink" style="display:none">Partner<span class="drawer-en">partner</span></a>
     <a href="#news"  onclick="closeMenu()">News<span class="drawer-en">news</span></a>
+    <a href="#faq"   onclick="closeMenu()">FAQ<span class="drawer-en">faq</span></a>
     <a href="#contact" onclick="closeMenu()">Contact<span class="drawer-en">contact</span></a>
   </nav>
 
@@ -1444,11 +1526,11 @@
         <div class="service-item fade-in"><span class="service-num">01</span><div><p class="service-text">言語化支援</p><p class="service-sub">コンセプト・キャッチコピー・ネーミング開発、企業理念策定 等</p></div></div>
         <div class="service-item fade-in"><span class="service-num">02</span><div><p class="service-text">ブランディング支援</p><p class="service-sub">ブランドアイデンティティ設計、クリエイティブディレクション 等</p></div></div>
         <div class="service-item fade-in"><span class="service-num">03</span><div><p class="service-text">プロモーション支援</p><p class="service-sub">広告・パンフレット・Webサイト・イベント・動画・PR・SNSコンテンツ等の企画・制作・運用</p></div></div>
-        <div class="service-item fade-in"><span class="service-num">04</span><div><p class="service-text">取材記事制作</p></div></div>
-        <div class="service-item fade-in"><span class="service-num">05</span><div><p class="service-text">コピーライティングに関するセミナー</p></div></div>
-        <div class="service-item fade-in"><span class="service-num">06</span><div><p class="service-text">アナログゲーム制作</p></div></div>
-        <div class="service-item fade-in"><span class="service-num">07</span><div><p class="service-text">事業構想支援</p></div></div>
-        <div class="service-item fade-in"><span class="service-num">08</span><div><p class="service-text">忍者に関する啓蒙活動</p></div></div>
+        <div class="service-item fade-in"><span class="service-num">04</span><div><p class="service-text">取材記事制作</p><p class="service-sub">企業・人物インタビュー、広報誌・社内報・Webメディア向け取材・執筆</p></div></div>
+        <div class="service-item fade-in"><span class="service-num">05</span><div><p class="service-text">コピーライティングに関するセミナー</p><p class="service-sub">言語化・キャッチコピー・ブランディングをテーマにした講演・研修・ワークショップ</p></div></div>
+        <div class="service-item fade-in"><span class="service-num">06</span><div><p class="service-text">アナログゲーム制作</p><p class="service-sub">ボードゲーム・カードゲームの企画・ルール設計・コンテンツ制作</p></div></div>
+        <div class="service-item fade-in"><span class="service-num">07</span><div><p class="service-text">事業構想支援</p><p class="service-sub">新規事業開発・ビジネスモデル設計・事業ピッチ資料の言語化・ストーリー構築</p></div></div>
+        <div class="service-item fade-in"><span class="service-num">08</span><div><p class="service-text">忍者に関する啓蒙活動</p><p class="service-sub">三重県伊賀市出身者として、忍者文化の研究・PR・コンテンツ制作・講演活動</p></div></div>
       </div>
 
       <!-- Workflow -->
@@ -1564,6 +1646,69 @@
     <h2 class="sec-label fade-in" style="margin-bottom:32px;">News</h2>
     <div class="news-list" id="newsList">
       <!-- JS で content/news.json から動的に挿入 -->
+    </div>
+  </section>
+
+  <!-- ══ FAQ ══ -->
+  <section id="faq" class="sec">
+    <h2 class="sec-label fade-in">FAQ</h2>
+    <div class="faq-list" id="faqList">
+
+      <div class="faq-item fade-in">
+        <button class="faq-q" aria-expanded="false">
+          <span class="faq-q-mark">Q.</span>
+          <span class="faq-q-text">コピーライターへの依頼費用の目安を教えてください。</span>
+          <span class="faq-icon" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-a" role="region">
+          <p class="faq-a-text">案件の内容・ボリューム・スケジュールによって異なります。キャッチコピー1本から、ブランディング全体のディレクション、Webサイトのライティング一式まで、まずはお気軽にご相談ください。ヒアリングのうえ、お見積もりをご提示いたします。</p>
+        </div>
+      </div>
+
+      <div class="faq-item fade-in">
+        <button class="faq-q" aria-expanded="false">
+          <span class="faq-q-mark">Q.</span>
+          <span class="faq-q-text">対応エリアはどこですか？リモートでの依頼は可能ですか？</span>
+          <span class="faq-icon" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-a" role="region">
+          <p class="faq-a-text">東京・三重県伊賀市を拠点としていますが、全国どこからでもご依頼いただけます。オンラインでのヒアリング・打ち合わせにも対応しています。遠方のクライアント様からのご依頼も多数実績があります。</p>
+        </div>
+      </div>
+
+      <div class="faq-item fade-in">
+        <button class="faq-q" aria-expanded="false">
+          <span class="faq-q-mark">Q.</span>
+          <span class="faq-q-text">納期の目安を教えてください。</span>
+          <span class="faq-icon" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-a" role="region">
+          <p class="faq-a-text">案件の規模によって異なりますが、キャッチコピー・コンセプトワードの場合は通常2〜4週間程度を目安にしています。スケジュールについてはご相談時にすり合わせますので、お急ぎの案件もまずはご相談ください。</p>
+        </div>
+      </div>
+
+      <div class="faq-item fade-in">
+        <button class="faq-q" aria-expanded="false">
+          <span class="faq-q-mark">Q.</span>
+          <span class="faq-q-text">どのような業種・規模の企業からの依頼に対応していますか？</span>
+          <span class="faq-icon" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-a" role="region">
+          <p class="faq-a-text">大手企業から中小企業・スタートアップ・個人事業主まで、業種・規模を問わずお受けしています。製造業・不動産・医療・IT・飲食・教育・自治体など幅広い実績があります。「言葉に悩んでいる」と感じたら、まずご相談ください。</p>
+        </div>
+      </div>
+
+      <div class="faq-item fade-in">
+        <button class="faq-q" aria-expanded="false">
+          <span class="faq-q-mark">Q.</span>
+          <span class="faq-q-text">コピーライティングだけでなく、デザインや制作も一緒に依頼できますか？</span>
+          <span class="faq-icon" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-a" role="region">
+          <p class="faq-a-text">はい、対応可能です。言葉の開発にとどまらず、クリエイティブディレクションとして広告・Webサイト・動画・パンフレットなどの制作全体をディレクションすることもできます。信頼できるデザイナー・制作パートナーとの連携も可能です。</p>
+        </div>
+      </div>
+
     </div>
   </section>
 
@@ -2203,6 +2348,22 @@
       });
     }, { threshold: 0.12 });
     document.querySelectorAll('.fade-in').forEach(el => fadeObs.observe(el));
+
+    /* ── FAQ アコーディオン ── */
+    document.querySelectorAll('.faq-q').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const item = btn.closest('.faq-item');
+        const isOpen = item.classList.contains('open');
+        document.querySelectorAll('.faq-item.open').forEach(el => {
+          el.classList.remove('open');
+          el.querySelector('.faq-q').setAttribute('aria-expanded', 'false');
+        });
+        if (!isOpen) {
+          item.classList.add('open');
+          btn.setAttribute('aria-expanded', 'true');
+        }
+      });
+    });
 
     /* ── 初期化 ── */
     document.addEventListener('DOMContentLoaded', () => {
