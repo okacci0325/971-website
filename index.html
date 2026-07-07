@@ -2031,7 +2031,10 @@
         modalMain.innerHTML = `<video src="${m.src}" controls playsinline style="width:100%;height:100%;object-fit:contain;background:#000;"></video>`;
         modalMain.style.cursor = '';
       } else {
-        modalMain.innerHTML = `<img src="${m.src}" alt="" style="cursor:zoom-in" />`;
+        const _isPng = /\.png(\?|$)/i.test(m.src);
+        if (_isPng) modalMain.style.background = '#fff';
+        else modalMain.style.background = '';
+        modalMain.innerHTML = `<img src="${m.src}" alt="" style="cursor:zoom-in${_isPng ? ';padding:16px;box-sizing:border-box' : ''}" />`;
         modalMain.querySelector('img').addEventListener('click', () => {
           openLightbox(currentMediaList, currentMediaIdx);
         });
@@ -2281,7 +2284,10 @@
       } else if (m.type === 'local-video') {
         main.innerHTML = `<video src="${m.src}" controls playsinline style="width:100%;height:100%;object-fit:contain;background:#000;"></video>`;
       } else {
-        main.innerHTML = `<img src="${m.src}" alt="" style="cursor:zoom-in" />`;
+        const _isPng = /\.png(\?|$)/i.test(m.src);
+        if (_isPng) main.style.background = '#fff';
+        else main.style.background = '';
+        main.innerHTML = `<img src="${m.src}" alt="" style="cursor:zoom-in${_isPng ? ';padding:16px;box-sizing:border-box' : ''}" />`;
         main.querySelector('img').addEventListener('click', () => openLightbox(currentMediaList, currentMediaIdx));
       }
     }
