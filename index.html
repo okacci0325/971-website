@@ -452,6 +452,8 @@
       position: relative;
     }
     .work-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+    .work-img.is-png { background: var(--white); }
+    .work-img.is-png img { object-fit: contain; padding: 12px; }
     .work-card:hover .work-img img { transform: scale(1.04); }
     .work-img-placeholder {
       width: 100%; height: 100%;
@@ -1869,7 +1871,7 @@
       // 全件をDOMに入れる。visibleCount超はhiddenで非表示
       grid.innerHTML = filtered.map((item, i) => `
         <button class="work-card fade-in${i >= visibleCount ? ' hidden' : ''}" data-idx="${item._origIdx}">
-          <div class="work-img">
+          <div class="work-img${item.image && /\.png(\?|$)/i.test(item.image) ? ' is-png' : ''}">
             ${item.image
               ? `<img src="${item.image}" alt="${item.title}" loading="lazy" />`
               : '<div class="work-img-placeholder">Visual / Image</div>'
