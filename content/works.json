@@ -66,23 +66,16 @@
       "description": "AIとデータを活用して地域医療の課題解決に挑むPrimaryTouchのブランディングを担当しました。\n第一弾として「診療は、新領域へ。」というコンセプトを軸に、医療系展示会で活用するためのパンフレットと動画を制作。一般的に想起される医療イメージとは一線を画するデザイン表現によって、新しい領域へ踏み出していく前向きかつ挑戦的な姿勢を視覚的に感じさせます。\n第二弾としてブランドロゴのフルリニューアルとドラッグマガジン社との対談動画を制作。ロゴマークは利用シーンに応じて自由に色を変化させられる設計をしており、一つの地域や価値観にとらわれることなく世界へと飛び出していく決意を表しています。\n\n＜staff＞\nCopywriter & Creative Director : Shuhei Okazawa \nArt Director & Design : Rui Kawasaki \nVideo Director：Keisuke Furuta"
     },
     {
-      "video_url": "",
       "featured": true,
       "published": true,
-      "url": "https://rkc.takushoku-u.ac.jp/",
-      "title": "拓殖大学 ｜ 特設サイト",
-      "images": [
-        "/images/uploads/スクリーンショット-2026-04-21-15.44.10.png",
-        "/images/uploads/スクリーンショット-2026-04-21-15.37.10.png",
-        "/images/uploads/スクリーンショット-2026-04-21-15.37.44.png",
-        "/images/uploads/スクリーンショット-2026-04-21-15.38.11.png",
-        "/images/uploads/スクリーンショット-2026-04-21-15.38.40.png"
-      ],
-      "image": "/images/uploads/スクリーンショット-2026-04-20-11.27.31.png",
+      "title": "アクアビジョン ｜ VR施設ネーミング",
       "categories": [
-        "取材記事"
+        "キャッチコピー",
+        "ネーミング"
       ],
-      "description": "拓殖大学の特設サイト「コトバで拓け、キミの世界。」、呂布カルマさんと学生4名の対談記事制作にライターとして参画しました。\n唯一無二の言語感覚を持つ呂布氏との対話を通じ、学生が自身の人生観や野心、葛藤を「言語化」するプロセスを追った自己再発見ドキュメンタリー。\n苦悩や葛藤などの本音をさらけ出す学生のみなさんとそれに対してまっすぐに向き合う呂布さんの姿勢から、学びや生き方に対する思考を広げるきっかけとなるサイトとなっています。\n\n＜staff＞\nCreative Director : Fumitoshi Tsujino\nWriter : Shuhei Okazawa \nPhotographer：Yuji Tanno"
+      "image": "/images/uploads/wahhhp-logo.png",
+      "description": "作品ごとに異なる物語の世界へ入り込めるVR体験施設「WAHHHP（ワープ）」のネーミングおよびタグラインを開発しました。最先端のVR技術と空間演出で、まるでその世界の住人になったような没入体験を楽しむことができる。こうした特徴を、SFにおける移動手段「WARP」と感嘆詞「AHHH」を組み合わせたネーミングで表現しました。また、「物語の世界に飛び込めること」「常設施設であること」を伝えるために「STORYDIVE THEATER」というタグラインも合わせて策定。上映作品はアクション、ファンタジー、アートなど定期的に入れ替わり、訪れるたびに新しい出会いが待っています。",
+      "url": "https://wahhhp.com/"
     },
     {
       "featured": true,
@@ -102,6 +95,25 @@
         "/images/uploads/スクリーンショット-2026-04-21-16.04.53.png",
         "/images/uploads/スクリーンショット-2026-04-21-16.06.39.png"
       ]
+    },
+    {
+      "video_url": "",
+      "featured": false,
+      "published": true,
+      "url": "https://rkc.takushoku-u.ac.jp/",
+      "title": "拓殖大学 ｜ 特設サイト",
+      "images": [
+        "/images/uploads/スクリーンショット-2026-04-21-15.44.10.png",
+        "/images/uploads/スクリーンショット-2026-04-21-15.37.10.png",
+        "/images/uploads/スクリーンショット-2026-04-21-15.37.44.png",
+        "/images/uploads/スクリーンショット-2026-04-21-15.38.11.png",
+        "/images/uploads/スクリーンショット-2026-04-21-15.38.40.png"
+      ],
+      "image": "/images/uploads/スクリーンショット-2026-04-20-11.27.31.png",
+      "categories": [
+        "取材記事"
+      ],
+      "description": "拓殖大学の特設サイト「コトバで拓け、キミの世界。」、呂布カルマさんと学生4名の対談記事制作にライターとして参画しました。\n唯一無二の言語感覚を持つ呂布氏との対話を通じ、学生が自身の人生観や野心、葛藤を「言語化」するプロセスを追った自己再発見ドキュメンタリー。\n苦悩や葛藤などの本音をさらけ出す学生のみなさんとそれに対してまっすぐに向き合う呂布さんの姿勢から、学びや生き方に対する思考を広げるきっかけとなるサイトとなっています。\n\n＜staff＞\nCreative Director : Fumitoshi Tsujino\nWriter : Shuhei Okazawa \nPhotographer：Yuji Tanno"
     },
     {
       "video_url": "",
@@ -392,18 +404,6 @@
         "/images/uploads/img_6226.jpg"
       ],
       "description": "忍者が使っていた「九字印」をモチーフにしたカードゲーム「印 -IN- 」を自主制作。ゲームデザイン・アートワークのすべてを担当しています。\n場に表示された印を誰よりも早く結ぶことを競うゲームで、ゲームを通じて印の種類や結び方を身につけることができます。\nゲームマーケット2023秋で数量限定で販売し、完売しました。"
-    },
-    {
-      "featured": false,
-      "published": true,
-      "title": "アクアビジョン ｜ VR施設ネーミング",
-      "categories": [
-        "キャッチコピー",
-        "ネーミング"
-      ],
-      "image": "/images/uploads/wahhhp-logo.png",
-      "description": "作品ごとに異なる物語の世界へ入り込めるVR体験施設「WAHHHP（ワープ）」のネーミングおよびタグラインを開発しました。最先端のVR技術と空間演出で、まるでその世界の住人になったような没入体験を楽しむことができる。こうした特徴を、SFにおける移動手段「WARP」と感嘆詞「AHHH」を組み合わせたネーミングで表現しました。また、「物語の世界に飛び込めること」「常設施設であること」を伝えるために「STORYDIVE THEATER」というタグラインも合わせて策定。上映作品はアクション、ファンタジー、アートなど定期的に入れ替わり、訪れるたびに新しい出会いが待っています。",
-      "url": "https://wahhhp.com/"
     }
   ]
 }
