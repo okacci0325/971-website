@@ -423,7 +423,7 @@
     },
     {
       "featured": true,
-      "published": false,
+      "published": true,
       "title": "NATSUME GARDEN ｜ ブランディング",
       "categories": [
         "キャッチコピー",
@@ -435,14 +435,12 @@
       "url": "https://natsume.ne.jp/",
       "image": "/images/uploads/images.png",
       "images": [
-        "/images/uploads/natsume_garden_logo0324_bass_a.jpg",
-        "/images/uploads/natsume_garden_logo0324_bass_b.jpg",
-        "/images/uploads/natsume_garden_logo0324_drum-loop.jpg",
-        "/images/uploads/natsume_garden_logo0324_guitar_b.jpg",
-        "/images/uploads/natsume_garden_logo0324_piano-02.jpg",
-        "/images/uploads/natsume_garden_logo0324_violin.jpg"
+        "/images/uploads/スクリーンショット-2026-11-26-17.32.34.png",
+        "/images/uploads/スクリーンショット-2026-11-26-17.33.12.png",
+        "/images/uploads/スクリーンショット-2026-11-26-17.33.39.png",
+        "/images/uploads/スクリーンショット-2026-11-26-17.34.01.png"
       ],
-      "description": "音楽家・長和幸さんの音楽制作プロジェクト「NATSUME GARDEN（ナツメガーデン）」のCI（コーポレートアイデンティティ）開発およびWebサイト制作を担当しました。\n\nまず取り組んだのは、プロジェクトの顔となるブランドロゴの開発。長さんとの対話を重ねる中で浮かび上がったのが、「生きている音」というキーワードでした。そこから、音がさまざまな姿に化ける「音化け（おばけ）」というコンセプトを立案。実際に演奏した楽器の音の波形を用いて、自在に姿を変える「ジェネラティブロゴ」を開発しました。\n\nWebサイトでは、ブランドロゴのアニメーションを通じて、「生きている音」を直感的に体感できるよう設計。音楽に対する独創的な思想を、遊び心と親しみやすさのあるブランド体験へと昇華させました。\n\n＜staff＞\nCreative Director & Copywriter：Shuhei Okazawa\nDesigner ＆ Art Director：Keiko Koide\nTechnical Direction: Tomohiro Muta (moanin’ Inc.)\nFront-end Development: Masafumi Sakai (moanin’ Inc.)\nPortrait Photographer：Miki Takahira\nHair & Make：Kazumi Nakano"
+      "description": "自然や無機物など、あらゆるものに宿る音の可能性を探求する音楽家・長和幸さんの音楽制作プロジェクト「NATSUME GARDEN（ナツメガーデン）」のCI（コーポレートアイデンティティ）開発およびWebサイト制作を担当しました。\n\nまず取り組んだのは、プロジェクトの顔となるブランドロゴの開発。長さんとの対話を重ねる中で浮かび上がったのが、「生きている音」というキーワードでした。そこから、音がさまざまな姿に化ける「音化け（おばけ）」というコンセプトを立案。実際に演奏した楽器の音の波形を用いて、まさに生きているかのように自在に姿を変える「ジェネラティブロゴ」を開発しました。\n\nWebサイトは、ブランドロゴのアニメーションを通じて、「生きている音」を直感的に体感できるよう設計。音楽に対する独創的な思想を、遊び心と親しみやすさのあるブランド体験へと昇華させました。\n\n＜staff＞\nCreative Director & Copywriter：Shuhei Okazawa\nDesigner ＆ Art Director：Riko Koide\nTechnical Direction: Tomohiro Muta (moanin’ Inc.)\nFront-end Development: Masafumi Sakai (moanin’ Inc.)\nPortrait Photographer：Miki Takahira\nHair & Make：Kazumi Nakano"
     }
   ]
 }
